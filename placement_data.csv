@@ -1,0 +1,270 @@
+id,Sl No,Name,Total,Conducted
+1,1,De Shaw,5,0
+2,1,De Shaw,5,4
+3,1,De Shaw,5,1
+4,1,De Shaw,5,3
+5,1,De Shaw,5,1
+6,1,De Shaw,5,1
+7,1,De Shaw,5,3
+8,1,De Shaw,5,3
+9,1,De Shaw,5,1
+10,1,De Shaw,5,5
+11,1,De Shaw,5,1
+12,1,De Shaw,5,4
+13,1,De Shaw,5,2
+14,1,De Shaw,5,1
+15,1,De Shaw,5,2
+16,2,Teach for India,1,0
+17,2,Teach for India,1,0
+18,2,Teach for India,1,0
+19,2,Teach for India,1,0
+20,2,Teach for India,1,0
+21,2,Teach for India,1,0
+22,2,Teach for India,1,0
+23,2,Teach for India,1,0
+24,2,Teach for India,1,1
+25,2,Teach for India,1,0
+26,2,Teach for India,1,1
+27,3,L&T Infotech,6,0
+28,3,L&T Infotech,6,0
+29,3,L&T Infotech,6,0
+30,3,L&T Infotech,6,1
+31,3,L&T Infotech,6,0
+32,3,L&T Infotech,6,0
+33,3,L&T Infotech,6,6
+34,3,L&T Infotech,6,4
+35,3,L&T Infotech,6,0
+36,3,L&T Infotech,6,1
+37,3,L&T Infotech,6,1
+38,3,L&T Infotech,6,0
+39,3,L&T Infotech,6,6
+40,3,L&T Infotech,6,1
+41,3,L&T Infotech,6,1
+42,3,L&T Infotech,6,6
+43,3,L&T Infotech,6,0
+44,3,L&T Infotech,6,6
+45,4,Deloitte,3,0
+46,4,Deloitte,3,0
+47,4,Deloitte,3,0
+48,4,Deloitte,3,0
+49,4,Deloitte,3,0
+50,4,Deloitte,3,0
+51,4,Deloitte,3,0
+52,4,Deloitte,3,4
+53,4,Deloitte,3,1
+54,4,Deloitte,3,1
+55,4,Deloitte,3,1
+56,4,Deloitte,3,0
+57,4,Deloitte,3,3
+58,4,Deloitte,3,2
+59,4,Deloitte,3,1
+60,4,Deloitte,3,0
+61,4,Deloitte,3,0
+62,4,Deloitte,3,1
+63,4,Deloitte,3,0
+64,4,Deloitte,3,0
+65,4,Deloitte,3,0
+66,4,Deloitte,3,1
+67,4,Deloitte,3,0
+68,4,Deloitte,3,3
+69,4,Deloitte,3,3
+70,4,Deloitte,3,0
+71,4,Deloitte,3,2
+72,4,Deloitte,3,2
+73,4,Deloitte,3,0
+74,4,Deloitte,3,1
+75,4,Deloitte,3,0
+76,4,Deloitte,3,0
+77,4,Deloitte,3,1
+78,4,Deloitte,3,1
+79,4,Deloitte,3,0
+80,4,Deloitte,3,1
+81,4,Deloitte,3,0
+82,4,Deloitte,3,0
+83,4,Deloitte,3,0
+84,4,Deloitte,3,4
+85,4,Deloitte,3,0
+86,4,Deloitte,3,2
+87,4,Deloitte,3,0
+88,4,Deloitte,3,1
+89,4,Deloitte,3,2
+90,4,Deloitte,3,0
+91,4,Deloitte,3,1
+92,4,Deloitte,3,0
+93,4,Deloitte,3,1
+94,4,Deloitte,3,0
+95,4,Deloitte,3,0
+96,5,SAP Labs India,4,0
+97,5,SAP Labs India,4,1
+98,5,SAP Labs India,4,2
+99,5,SAP Labs India,4,1
+100,5,SAP Labs India,4,0
+101,5,SAP Labs India,4,1
+102,5,SAP Labs India,4,3
+103,5,SAP Labs India,4,0
+104,5,SAP Labs India,4,4
+105,5,SAP Labs India,4,4
+106,5,SAP Labs India,4,1
+107,5,SAP Labs India,4,1
+108,5,SAP Labs India,4,3
+109,5,SAP Labs India,4,1
+110,6,Envestnet Yodlee,5,0
+111,6,Envestnet Yodlee,5,0
+112,6,Envestnet Yodlee,5,0
+113,6,Envestnet Yodlee,5,0
+114,6,Envestnet Yodlee,5,1
+115,6,Envestnet Yodlee,5,2
+116,6,Envestnet Yodlee,5,1
+117,6,Envestnet Yodlee,5,1
+118,6,Envestnet Yodlee,5,0
+119,6,Envestnet Yodlee,5,0
+120,6,Envestnet Yodlee,5,1
+121,6,Envestnet Yodlee,5,0
+122,6,Envestnet Yodlee,5,0
+123,6,Envestnet Yodlee,5,0
+124,6,Envestnet Yodlee,5,0
+125,6,Envestnet Yodlee,5,0
+126,6,Envestnet Yodlee,5,4
+127,6,Envestnet Yodlee,5,0
+128,6,Envestnet Yodlee,5,0
+129,6,Envestnet Yodlee,5,0
+130,6,Envestnet Yodlee,5,2
+131,6,Envestnet Yodlee,5,0
+132,6,Envestnet Yodlee,5,1
+133,6,Envestnet Yodlee,5,1
+134,7,Shell,3,0
+135,7,Shell,3,0
+136,7,Shell,3,0
+137,7,Shell,3,0
+138,7,Shell,3,0
+139,7,Shell,3,0
+140,7,Shell,3,4
+141,7,Shell,3,2
+142,7,Shell,3,1
+143,7,Shell,3,1
+144,7,Shell,3,0
+145,7,Shell,3,2
+146,7,Shell,3,1
+147,7,Shell,3,0
+148,7,Shell,3,1
+149,7,Shell,3,0
+150,7,Shell,3,0
+151,7,Shell,3,0
+152,7,Shell,3,1
+153,7,Shell,3,3
+154,7,Shell,3,0
+155,7,Shell,3,3
+156,7,Shell,3,0
+157,7,Shell,3,3
+158,7,Shell,3,0
+159,7,Shell,3,1
+160,7,Shell,3,1
+161,7,Shell,3,4
+162,7,Shell,3,4
+163,7,Shell,3,0
+164,7,Shell,3,0
+165,7,Shell,3,1
+166,7,Shell,3,1
+167,7,Shell,3,1
+168,7,Shell,3,0
+169,7,Shell,3,1
+170,7,Shell,3,0
+171,7,Shell,3,0
+172,7,Shell,3,0
+173,7,Shell,3,0
+174,7,Shell,3,2
+175,7,Shell,3,0
+176,7,Shell,3,1
+177,7,Shell,3,0
+178,7,Shell,3,1
+179,7,Shell,3,0
+180,7,Shell,3,0
+181,8,Search Bourne Consulting,4,0
+182,8,Search Bourne Consulting,4,0
+183,8,Search Bourne Consulting,4,0
+184,8,Search Bourne Consulting,4,0
+185,8,Search Bourne Consulting,4,1
+186,8,Search Bourne Consulting,4,0
+187,8,Search Bourne Consulting,4,0
+188,9,Wipro,5,0
+189,9,Wipro,5,0
+190,9,Wipro,5,1
+191,9,Wipro,5,0
+192,9,Wipro,5,1
+193,9,Wipro,5,0
+194,9,Wipro,5,0
+195,9,Wipro,5,1
+196,9,Wipro,5,4
+197,9,Wipro,5,1
+198,9,Wipro,5,3
+199,9,Wipro,5,0
+200,10,McKinsey Global Services,5,0
+201,10,McKinsey Global Services,5,0
+202,10,McKinsey Global Services,5,0
+203,10,McKinsey Global Services,5,0
+204,10,McKinsey Global Services,5,0
+205,10,McKinsey Global Services,5,0
+206,10,McKinsey Global Services,5,1
+207,10,McKinsey Global Services,5,0
+208,10,McKinsey Global Services,5,0
+209,10,McKinsey Global Services,5,0
+210,10,McKinsey Global Services,5,0
+211,10,McKinsey Global Services,5,0
+212,10,McKinsey Global Services,5,1
+213,10,McKinsey Global Services,5,4
+214,10,McKinsey Global Services,5,0
+215,10,McKinsey Global Services,5,0
+216,10,McKinsey Global Services,5,4
+217,11,Exxon Mobil,4,0
+218,11,Exxon Mobil,4,0
+219,11,Exxon Mobil,4,0
+220,11,Exxon Mobil,4,0
+221,11,Exxon Mobil,4,0
+222,11,Exxon Mobil,4,1
+223,11,Exxon Mobil,4,1
+224,11,Exxon Mobil,4,1
+225,11,Exxon Mobil,4,2
+226,11,Exxon Mobil,4,1
+227,11,Exxon Mobil,4,0
+228,11,Exxon Mobil,4,0
+229,11,Exxon Mobil,4,0
+230,11,Exxon Mobil,4,0
+231,11,Exxon Mobil,4,0
+232,11,Exxon Mobil,4,1
+233,11,Exxon Mobil,4,0
+234,11,Exxon Mobil,4,1
+235,11,Exxon Mobil,4,1
+236,11,Exxon Mobil,4,0
+237,11,Exxon Mobil,4,4
+238,11,Exxon Mobil,4,0
+239,11,Exxon Mobil,4,2
+240,11,Exxon Mobil,4,0
+241,11,Exxon Mobil,4,0
+242,11,Exxon Mobil,4,2
+243,11,Exxon Mobil,4,0
+244,11,Exxon Mobil,4,1
+245,12,MuSigma,4,0
+246,12,MuSigma,4,0
+247,12,MuSigma,4,0
+248,12,MuSigma,4,0
+249,12,MuSigma,4,1
+250,12,MuSigma,4,1
+251,12,MuSigma,4,1
+252,12,MuSigma,4,0
+253,12,MuSigma,4,2
+254,12,MuSigma,4,1
+255,12,MuSigma,4,0
+256,12,MuSigma,4,0
+257,12,MuSigma,4,6
+258,12,MuSigma,4,0
+259,12,MuSigma,4,0
+260,12,MuSigma,4,1
+261,12,MuSigma,4,1
+262,12,MuSigma,4,0
+263,12,MuSigma,4,0
+264,12,MuSigma,4,0
+265,12,MuSigma,4,1
+266,12,MuSigma,4,1
+267,13,JP Morgan,4,0
+268,13,JP Morgan,4,1
+269,13,JP Morgan,4,1

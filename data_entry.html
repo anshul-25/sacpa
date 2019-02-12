@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.embed-responsive
+		{
+			border-radius: 4px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="container-fluid row mx-0 px-0 h-100 rounded-0" style="padding: 10px; overflow-y: hidden; background-color: #dcefdc">
+		<!-- -----------SIDE NAVBAR---------------- -->
+		<div id="accordion" class="col-lg-3  py-3 pr-0">
+			<div class="card p-4 text-center m-0" style="background-color: #ffffff">
+				<a href="http://localhost/sacpa/ "><img src="http:\\localhost\sacpa\logo_green.png" alt="SACPA" height="120px"/></a>
+			</div>
+
+			<div class="card p-4 text-center m-0" style="background-color: #5CB85C">
+				<h2 style="font-size: 35px;"><strong>Data Entry</strong></h2>
+			</div>
+
+			<div class="card m-0">
+				<div class="card-header z-depth-1" role="tab" id="headingOne" style="text-align: center;">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+					aria-controls="collapseOne">
+					<!-- <i class="fa fa-graduation-cap fa-2x p-3 mr-4 float-left black-text" aria-hidden="true"></i> -->
+					<h3 class="text-uppercase white-text mb-0 py-3 mt-1" ><i class="fa fa-graduation-cap"></i> STUDENT</h3>
+				</a>
+			</div>
+
+			<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+				<div class="card-body">
+					<div class="list-group" id="list-tab1" role="tablist">
+						<a class="list-group-item list-group-item-action py-1" id="list-personal-list" data-toggle="list" href="#personalForm" role="tab" aria-controls="personal">Personal</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-academicsPU-list" data-toggle="list" href="#PUForm" role="tab" aria-controls="academicspu">Academics - Pre University</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-academicsU-list" data-toggle="list" href="#UForm" role="tab" aria-controls="academicu">Academics - University</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-creditCourse-list" data-toggle="list" href="#ccForm" role="tab" aria-controls="creditcoirse">Credit Course</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-internship-list" data-toggle="list" href="#internshipForm" role="tab" aria-controls="internship">Internship</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-activity-list" data-toggle="list" href="#activityForm" role="tab" aria-controls="activity">Activity</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-participatedEvents-list" data-toggle="list" href="#partEventsForm" role="tab" aria-controls="partevent">Participated Events</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-ManagedEvents-list" data-toggle="list" href="#mgdEventsForm" role="tab" aria-controls="mgdevent">Managed Events</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-placement-list" data-toggle="list" href="#placementForm" role="tab" aria-controls="placement">Placement</a>
+
+						<a class="list-group-item list-group-item-action py-1" id="list-clubs-list" data-toggle="list" href="#clubsForm" role="tab" aria-controls="clubs">Clubs or Organisations</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card m-0">
+			<div class="card-header  z-depth-1" role="tab" id="headingThree" style="text-align: center;">
+
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true"
+				aria-controls="collapseTwo">
+
+				<!-- <i class="fa fa-user fa-2x p-3 mr-4 float-left black-text" aria-hidden="true"></i> -->
+				<h3 class="text-uppercase white-text mb-0 py-3 mt-1"><i class="fa fa-user" aria-hidden="true"></i> &nbsp;ADMIN</h3>
+			</a>
+
+		</div>
+
+
+
+		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+			<div class="card-body">
+				<div class="list-group" id="list-tab2" role="tablist">
+					<a class="list-group-item list-group-item-action py-1" id="list-company-list" data-toggle="list" href="#companyForm" role="tab" aria-controls="company">Company</a>
+
+					<a class="list-group-item list-group-item-action py-1" id="list-deanery-list" data-toggle="list" href="#deaneryForm" role="tab" aria-controls="deanery">Deanery</a>
+
+					<a class="list-group-item list-group-item-action py-1" id="list-dept-list" data-toggle="list" href="#deptForm" role="tab" aria-controls="department">Department</a>
+
+					<a class="list-group-item list-group-item-action py-1" id="list-programme-list" data-toggle="list" href="#programmeForm" role="tab" aria-controls="programme">Programme</a>
+
+					<a class="list-group-item list-group-item-action py-1" id="list-subject-list" data-toggle="list" href="#subjectForm" role="tab" aria-controls="subject">Subject</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- --------------TAB CONTENTS------------- -->
+<div class="col-lg-9 h-100 py-3" style="overflow-y: hidden;">
+	<div class="tab-content" id="nav-tabContent">
+
+		<!-- ------STUDENT FORMS------ -->
+		<div class="tab-pane fade show active" id="aboutForm" role="tabpanel" aria-labelledby="about-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height:100vh; position: relative;">
+				<iframe class="embed-responsive-item" src="background_active_page.html" allowfullscreen ></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="personalForm" role="tabpanel" aria-labelledby="list-personal-content" > 
+			<div class="embed-responsive embed-responsive-16by9" style="height:100vh; position: relative;">
+				<iframe class="embed-responsive-item" src="personal_details.php" allowfullscreen ></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="PUForm" role="tabpanel" aria-labelledby="list-PU-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="academicsPU_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="UForm" role="tabpanel" aria-labelledby="list-U-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="academicsU_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="ccForm" role="tabpanel" aria-labelledby="list-cc-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="credit_course_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="internshipForm" role="tabpanel" aria-labelledby="list-internship-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="Internships_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="activityForm" role="tabpanel" aria-labelledby="list-activity-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="activity_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="partEventsForm" role="tabpanel" aria-labelledby="list-partevents-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="participatedEvents_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="mgdEventsForm" role="tabpanel" aria-labelledby="list-mgdevents-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="managedEvents_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="placementForm" role="tabpanel" aria-labelledby="list-placement-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="placements_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="clubsForm" role="tabpanel" aria-labelledby="list-clubs-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="Clubs_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+
+		<!-- ------ADMIN FORMS----- -->
+		<div class="tab-pane fade" id="companyForm" role="tabpanel" aria-labelledby="list-company-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="company_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="deaneryForm" role="tabpanel" aria-labelledby="list-deanery-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="deanery_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="deptForm" role="tabpanel" aria-labelledby="list-department-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="department_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="programmeForm" role="tabpanel" aria-labelledby="list-programme-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="program_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="subjectForm" role="tabpanel" aria-labelledby="list-subject-content">
+			<div class="embed-responsive embed-responsive-16by9" style="height: 100vh;position: relative;">
+				<iframe class="embed-responsive-item" src="subject_form.php" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

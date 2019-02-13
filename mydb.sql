@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2019 at 10:27 AM
+-- Generation Time: Feb 13, 2019 at 07:37 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -39339,7 +39339,8 @@ CREATE TABLE `class10` (
 
 INSERT INTO `class10` (`idClass10`, `studentid`, `exam_regno`, `Stream`, `Board`, `Total_Marks`, `Marks_obt`, `Year`) VALUES
 (1, 1641011, 456123, 'Science', 'ICSE', 100, 93.8, 2014),
-(2, 1641020, 52645, 'Science', 'ICSE', 100, 96.17, 2014);
+(2, 1641020, 52645, 'Science', 'ICSE', 100, 96.17, 2014),
+(3, 1641060, 7204599, 'General', 'CBSE', 100, 93.1, 2014);
 
 -- --------------------------------------------------------
 
@@ -39364,7 +39365,8 @@ CREATE TABLE `class12` (
 
 INSERT INTO `class12` (`idClass12`, `Studentid`, `Exam_reg_no`, `Board`, `Stream`, `Total_marks`, `Marks_Obt`, `Year`) VALUES
 (1, 1641011, 789456, 'CBSE', 'Science', 100, 92, 2016),
-(2, 1641020, 456147, 'CBSE', 'Science', 100, 96.2, 2016);
+(2, 1641020, 456147, 'CBSE', 'Science', 100, 96.2, 2016),
+(3, 1641060, 724600, 'CBSE', 'Science', 100, 75.5, 2016);
 
 -- --------------------------------------------------------
 
@@ -39711,7 +39713,8 @@ CREATE TABLE `credit_course` (
 --
 
 INSERT INTO `credit_course` (`idCredit_Course`, `Studentid`, `Name`, `Credits`, `TotalMarks`, `MarksObtained`, `HoursConducted`, `HoursAttended`) VALUES
-(1, 1641011, 'CAPS', 2, 100, 90, 100, 90);
+(1, 1641011, 'CAPS', 2, 100, 90, 100, 90),
+(2, 1641060, 'CAPS', 2, 100, 90, 100, 80);
 
 -- --------------------------------------------------------
 
@@ -39770,7 +39773,6 @@ CREATE TABLE `dependent` (
   `idDependent` int(11) NOT NULL,
   `Title` varchar(45) DEFAULT NULL,
   `Fname` varchar(45) DEFAULT NULL,
-  `Mname` varchar(45) DEFAULT NULL,
   `Lname` varchar(45) DEFAULT NULL,
   `Phoneno` bigint(20) DEFAULT NULL,
   `EmailID` varchar(45) DEFAULT NULL,
@@ -39787,9 +39789,12 @@ CREATE TABLE `dependent` (
 -- Dumping data for table `dependent`
 --
 
-INSERT INTO `dependent` (`idDependent`, `Title`, `Fname`, `Mname`, `Lname`, `Phoneno`, `EmailID`, `HouseNo`, `StreetNo`, `City_id`, `Zipcode`, `Relation`, `Profession`, `AnnualIncome`) VALUES
-(1641011, 'Mr.', 'Bikash', '', 'Agarwal', 9830515867, 'b.a@g.com', 'Parvati Kunj, Flat 4B', '14B Dum Dum Road', 5583, 700074, 'Father', 'Business', 500000),
-(1641020, 'Mrs.', 'Debamitra', '', 'Santra', 9481528945, 'debamitra@gmail.com', 'Kirthi', 'Nayarkere', 1829, 576103, 'Mother', 'Housewife', 0);
+INSERT INTO `dependent` (`idDependent`, `Title`, `Fname`, `Lname`, `Phoneno`, `EmailID`, `HouseNo`, `StreetNo`, `City_id`, `Zipcode`, `Relation`, `Profession`, `AnnualIncome`) VALUES
+(1641010, 'Mr.', 'Abhijit', 'Majumder', 9001022223, 'abhijit.majumder@sbi.co.in', 'Bank House, State Bank of India', 'St. Mark\'s Road', 1558, 560001, 'Father', 'Banker', 500000),
+(1641011, 'Mr.', 'Bikash', 'Agarwal', 9830515867, 'b.a@g.com', 'Parvati Kunj, Flat 4B', '14B Dum Dum Road', 5583, 700074, 'Father', 'Business', 500000),
+(1641017, 'Mr.', 'Billy', 'Chacko', 9746811665, 'bebinsamuel1998@gmail.com', 'No. 5, 8th cross, yadava layout', 'Oil Mill Road', 1558, 560000, 'Family Friend', 'Retired', 500000),
+(1641020, 'Mrs.', 'Debamitra', 'Santra', 9481528945, 'debamitra@gmail.com', 'Kirthi', 'Nayarkere', 1829, 576103, 'Mother', 'Housewife', 0),
+(1641060, 'Mr.', 'Mahesh', 'Prasad', 7079583426, 'sshrey94@gmail.com', '12', 'Mandir Path Link, Bhatiya Basti, Kadma', 1425, 831005, 'Father', 'Businessman', 180000);
 
 -- --------------------------------------------------------
 
@@ -44046,8 +44051,8 @@ INSERT INTO `state` (`idState`, `name`, `country_id`) VALUES
 
 CREATE TABLE `student` (
   `RegisterNo` int(11) NOT NULL,
+  `Title` varchar(10) DEFAULT NULL,
   `FirstName` varchar(45) DEFAULT NULL,
-  `MiddleName` varchar(45) DEFAULT NULL,
   `LastName` varchar(45) DEFAULT NULL,
   `PhoneNo` bigint(11) DEFAULT NULL,
   `EmailIdPersonal` varchar(45) DEFAULT NULL,
@@ -44065,9 +44070,12 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`RegisterNo`, `FirstName`, `MiddleName`, `LastName`, `PhoneNo`, `EmailIdPersonal`, `HouseNo`, `Streetno`, `City_id`, `zipcode`, `Religion`, `ReservationCategory`, `ProgrammeID`, `Year_of_Admission`) VALUES
-(1641011, 'Anshul', '', 'Agarwal', 9742903823, 'agarwal.25ans@gmail.com', 'Parvati Kunj, Flat 4B', 'Parvati Kunj, Flat 4B', 5583, 700074, 'None', 'General', 1, 2016),
-(1641020, 'Debanjana', '', 'Santra', 9481528945, 'debanjana@gmail.com', 'Kirthi', 'Nayarkere', 1829, 576103, 'Hindu', 'General', 1, 2016);
+INSERT INTO `student` (`RegisterNo`, `Title`, `FirstName`, `LastName`, `PhoneNo`, `EmailIdPersonal`, `HouseNo`, `Streetno`, `City_id`, `zipcode`, `Religion`, `ReservationCategory`, `ProgrammeID`, `Year_of_Admission`) VALUES
+(1641010, 'Mr', 'Aniruddho', 'Majumder', 9660440660, 'aniruddho1997@gmail.com', 'Bank House, State Bank of India', 'St. Mark\'s Road', 1558, 560001, 'Hindu', 'General', 1, 2016),
+(1641011, 'Mr', 'Anshul', 'Agarwal', 9742903823, 'agarwal.25ans@gmail.com', 'Parvati Kunj, Flat 4B', 'Parvati Kunj, Flat 4B', 5583, 700074, 'None', 'General', 1, 2016),
+(1641017, 'Mr', 'Bebin', 'Samuel', 9746811665, 'bebinsamuel1998@gmail.com', '973', 'Al Wadi Al Kabir', 31252, 993, 'Christian', 'General', 1, 2016),
+(1641020, 'Ms', 'Debanjana', 'Santra', 9481528945, 'debanjana@gmail.com', 'Kirthi', 'Nayarkere', 1829, 576103, 'Hindu', 'General', 1, 2016),
+(1641060, 'Mr', 'Swapnil', 'Shrey', 9964330825, 'sshrey94@gmail.com', '108, Pelagia PG for Gents', 'Christ School Road, S.G. Palya', 1558, 560029, 'Hindu', 'General', 1, 2016);
 
 -- --------------------------------------------------------
 
@@ -44177,7 +44185,7 @@ INSERT INTO `sub_marks` (`idSub_marks`, `Student_id`, `Subject_id`, `Hours_Atten
 (23, 1641011, 'BCA434', 58, 8, 22, 8, 43, 5),
 (24, 1641011, 'BCA562', 44, 8, 21, 8, 40, 5),
 (25, 1641011, 'BCA531', 59, 9, 24, 9, 42, 5),
-(26, 1641011, 'BCA561A', 60, 7, 19, 7, 44, 5),
+(26, 1641011, 'BCA561A', 45, 7, 19, 7, 44, 5),
 (27, 1641011, 'BCA541B', 59, 9, 24, 9, 45, 5),
 (28, 1641011, 'BCA542E', 60, 9, 24, 9, 45, 5);
 
@@ -44359,13 +44367,13 @@ ALTER TABLE `activity_type`
 -- AUTO_INCREMENT for table `class10`
 --
 ALTER TABLE `class10`
-  MODIFY `idClass10` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idClass10` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `class12`
 --
 ALTER TABLE `class12`
-  MODIFY `idClass12` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idClass12` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `clubs_organisations`
@@ -44383,7 +44391,7 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `credit_course`
 --
 ALTER TABLE `credit_course`
-  MODIFY `idCredit_Course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCredit_Course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `deneary`

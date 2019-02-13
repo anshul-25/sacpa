@@ -1,0 +1,93 @@
+.bodydark {
+    color: #ffffff;
+    background-image: linear-gradient(-30deg,#230837,#491647,#7C265E);
+}
+
+.btn {
+    border-radius: 1.5rem;
+}
+
+.btn-outline-dark {
+    color: #491647;
+    background-color: transparent;
+    background-image: none;
+    border-color: #491647;
+}
+  
+.btn-outline-dark:hover {
+    color: #fff;
+    background-image: linear-gradient(-20deg,#230837,#491647,#7C265E);
+    border-color: #491647;
+}
+
+.btn-outline-dark:focus, .btn-outline-dark.focus {
+    box-shadow: none;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: none;
+}
+
+.btn-outline-light {
+    color: #fff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #fff;
+}
+
+.btn-outline-light:hover {
+    color: #491647;
+}
+
+.btn-outline-light:focus, .btn-outline-light.focus {
+    box-shadow: none;
+}
+
+.text-purple {
+    color: #491647 !important;
+}
+
+.tran {
+    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3));
+    border-radius: 10px;
+}
+
+.full {
+    min-height: 100%;
+}
+
+.hor {
+    border: none;
+    height: 1px;
+    color: #ffffff95;
+    background-color: #ffffff95;
+}
+
+.hor-light {
+    border: none;
+    height: 1px;
+    color: #00000095;
+    background-color: #00000095;
+}
+
+.progress {
+    border-radius: 1.5em;
+}
+
+@media (min-width: 560px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+@media (min-width: 1000px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-columns {
+        column-count: 3;
+    }
+}

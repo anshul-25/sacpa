@@ -155,8 +155,12 @@ if(isset($_POST["submit"]))
 	}
 	.sticky-offset {
     top: 56px;
-}
+	}
 
+
+.navbar a{
+	
+	}
 </style>
 
 <script type="text/javascript">
@@ -214,7 +218,7 @@ if(isset($_POST["submit"]))
 </head>
 
 <body style="overflow-y: hidden;">
-	<div class="container-fluid row">
+	<div class="container-fluid row m-0 p-0">
 		<!-- --------------TOP NAV BAR------------- -->
 		<nav class="navbar navbar-light justify-content-between sticky-top sticky-offset" style="position: fixed;width: 100%;top: 0; background-color: #dcefdc">
 			<a href="http:\\localhost\sacpa\index.html">
@@ -231,11 +235,12 @@ if(isset($_POST["submit"]))
 		{
 		// ------------------------SIDE PROFILE--------------------------
 		echo "
-		<div id=\"maincontainer\" class=\"container-fluid row\" style=\"padding-top: 75px;\">
-			<div class=\"col-3 bg-light m-0\">
+		<div id=\"maincontainer\" class=\"container-fluid row w-100 px-0 m-0\" style=\"padding-top: 75px;\">
+			<div class=\"col-2 bg-light m-0 p-2\">
 				<div class=\"card p-3\">
 					<img src=\"http:\\\\localhost\sacpa\outline_avatar.png\" alt=\"Photo\" style=\"max-width: 100%; vertical-align: middle;height: auto;\">
-					<h1>".$name2."</h1>
+					<br>
+					<h3>".$name2."</h3>
 					<p class=\"title\">".$register."</p>
 					<p>".$course."</p>
 					<p>".$email."</p>
@@ -247,9 +252,9 @@ if(isset($_POST["submit"]))
 	// 		<!-- ------------------------SIDE CONTENTS----------------------------------------------- -->
 	//      <!-- ------------------------NAV TABS---------------------------------------------------- -->
 			echo "
-			<div class=\"col-9\">
+			<div class=\"col-10\">
 			
-			<ul class=\"nav nav-tabs\" role=\"tablist\">
+			<ul class=\"nav nav-tabs nav-fill\" role=\"tablist\">
 				<li class=\"nav-item\">
 					<a href=\"#PUTable\" class=\"nav-link active\" role=\"tab\" data-toggle=\"tab\" aria-expanded=\"true\">Pre-University</a>
 				</li>
@@ -275,6 +280,9 @@ if(isset($_POST["submit"]))
 				<li class=\"nav-item\">
 					<a href=\"#participatedEventsTable\" class=\"nav-link\" role=\"tab\" data-toggle=\"tab\">Participated Events</a>
 				</li>
+				<li class=\"nav-item\">
+					<a href=\"#gradeTable\" class=\"nav-link\" role=\"tab\" data-toggle=\"tab\">Grade Predicted</a>
+				</li>
 			</ul>";
 
 	// 		<!-- ----TAB CONTENTS---- -->
@@ -282,8 +290,9 @@ if(isset($_POST["submit"]))
 			<div class=\"tab-content\" id=\"nav-contents\">
 				<div id=\"PUTable\" class=\"tab-pane fade show active\" role=\"tabpanel\" aria-labelledby=\"PU-tab\">
 					<div class=\"container row mt-3 p-0\" style=\"width:70%;\">
+
 						<div class=\"card border-primary mb-3 col-sm-6 p-0\" style=\"height:100%;\">
-							<div class=\"class-header p-3 bg-light\" style=\"width:100%;\">CLASS 10</div>
+							<div class=\"class-header p-3 bg-light text-primary\" style=\"width:100%;\"><strong>CLASS 10</strong></div>
 							<div class=\"class-body text-primary p-3\">
 								<p class=\"card-text\"><strong>Board: </strong>".$c[1]."</p>
 								<p class=\"card-text\"><strong>Stream: </strong>".$c[0]."</p>
@@ -291,22 +300,24 @@ if(isset($_POST["submit"]))
 							</div>
 						</div>
 						<div class=\"card border-primary mb-3 col-sm-6 p-0\" style=\"height:100%;\">
-							<div class=\"class-header p-3 bg-light\" style=\"width:100%;\">CLASS 12</div>
+							<div class=\"class-header p-3 bg-light text-primary\" style=\"width:100%;\"><strong>CLASS 12</strong></div>
 							<div class=\"class-body text-primary p-3\">
 								<p class=\"card-text\"><strong>Board: </strong>".$c2[1]."</p>
 								<p class=\"card-text\"><strong>Stream: </strong>".$c2[0]."</p>
 								<p class=\"card-text\"><strong>Marks: </strong>".$c2[3]."</p>
 							</div>
 						</div>
+
 					</div>
 				</div>
 
-				<div id=\"activityTable\" class=\"tab-pane fade\" role=\"tabpanel\" aria-labelledby=\"activity-tab\">
-				<input class=\"form-control m-2\" id=\"searchField1\" type=\"text\" placeholder=\"Search..\">
-  				<br>";
+				<div id=\"activityTable\" class=\"tab-pane fade\" role=\"tabpanel\" aria-labelledby=\"activity-tab\">";
 					if($i>0)
 					{
-						echo "<table class=\"table table-hover m-3\" style=\"width:90%\">
+						echo "
+						<input class=\"form-control mt-2\" id=\"searchField1\" type=\"text\" placeholder=\"Search..\" style=\"width:50%;\">
+						<br>
+						<table class=\"table table-hover\" style=\"width:90%\">
 						<thead>
 						<tr>
 						<th scope=\"col\">#</th>
@@ -332,19 +343,21 @@ if(isset($_POST["submit"]))
 					} //if($i>0)
 					else
 					{
-						echo "<div class=\"alert alert-danger m-3\">
+						echo "<div class=\"alert alert-danger m-3\" style=\"width:50%;\">
     						<strong>No Research/Project!</strong>
   						</div>";
 					}
 				echo "</div>
 
 				<div id=\"clubsTable\" class=\"tab-pane fade\" role=\"tabpanel\" aria-labelledby=\"clubs-tab\">
-				<input class=\"form-control m-2\" id=\"searchField2\" type=\"text\" placeholder=\"Search..\">
-  				<br>";
+				";
 					if($j>0)
 					{
 						
-						echo "<table class=\"table table-hover m-3\" style=\"width:90%\">
+						echo "
+						<input class=\"form-control mt-2\" id=\"searchField2\" type=\"text\" placeholder=\"Search..\" style=\"width:50%;\">
+  						<br>
+  						<table class=\"table table-hover \" style=\"width:90%\">
 						<thead>
 						<tr>
 						<th scope=\"col\">#</th>
@@ -368,19 +381,21 @@ if(isset($_POST["submit"]))
 					} //if($j>0)
 					else
 					{
-						echo "<div class=\"alert alert-danger m-3\">
+						echo "<div class=\"alert alert-danger m-3\" style=\"width:50%;\">
     						<strong>No Clubs/Organisation!</strong>
   						</div>";
 					}
 				echo "</div>
 
 				<div id=\"CCTable\" class=\"tab-pane fade\" role=\"tabpanel\" aria-labelledby=\"CC-tab\">
-				<input class=\"form-control m-2\" id=\"searchField3\" type=\"text\" placeholder=\"Search..\">
-  				<br>";
+				";
 					if($l>0)
 					{
 						
-						echo "<table class=\"table table-hover m-3\" style=\"width:90%\">
+						echo "
+						<input class=\"form-control mt-2\" id=\"searchField3\" type=\"text\" placeholder=\"Search..\" style=\"width:50%;\">
+  						<br>
+  						<table class=\"table table-hover \" style=\"width:90%\">
 						<thead>
 						<tr>
 						<th scope=\"col\">#</th>
@@ -406,19 +421,21 @@ if(isset($_POST["submit"]))
 					} //if($j>0)
 					else
 					{
-						echo "<div class=\"alert alert-danger m-3\">
+						echo "<div class=\"alert alert-danger m-3\" style=\"width:50%;\">
     						<strong>No Credit Course!</strong>
   						</div>";
 					}
 				echo "</div>
 
 				<div id=\"internshipsTable\" class=\"tab-pane fade\" role=\"tabpanel\" aria-labelledby=\"internships-tab\">
-				<input class=\"form-control m-2\" id=\"searchField4\" type=\"text\" placeholder=\"Search..\">
-  				<br>";
+				";
 				if($m>0)
 					{
 						
-						echo "<table class=\"table table-hover m-3\" style=\"width:90%\">
+						echo "
+						<input class=\"form-control mt-2\" id=\"searchField4\" type=\"text\" placeholder=\"Search..\" style=\"width:50%;\">
+  						<br>
+  						<table class=\"table table-hover \" style=\"width:90%\">
 						<thead>
 						<tr>
 						<th scope=\"col\">#</th>
@@ -442,19 +459,21 @@ if(isset($_POST["submit"]))
 					} //if($j>0)
 					else
 					{
-						echo "<div class=\"alert alert-danger m-3\">
+						echo "<div class=\"alert alert-danger m-3\" style=\"width:50%;\">
     						<strong>No Internships!</strong>
   						</div>";
 					}
 				echo "</div>
 
 				<div id=\"managedEventsTable\" class=\"tab-pane fade\" role=\"tabpanel\" aria-labelledby=\"managedEvents-tab\">
-				<input class=\"form-control m-2\" id=\"searchField5\" type=\"text\" placeholder=\"Search..\">
-  				<br>";
+				";
 					if($n>0)
 					{
 						
-						echo "<table class=\"table table-hover m-3\" style=\"width:90%\">
+						echo "
+						<input class=\"form-control mt-2\" id=\"searchField5\" type=\"text\" placeholder=\"Search..\" style=\"width:50%;\">
+  						<br>
+  						<table class=\"table table-hover \" style=\"width:90%\">
 						<thead>
 						<tr>
 						<th scope=\"col\">#</th>
@@ -478,19 +497,21 @@ if(isset($_POST["submit"]))
 					} //if($j>0)
 					else
 					{
-						echo "<div class=\"alert alert-danger m-3\">
+						echo "<div class=\"alert alert-danger m-3\" style=\"width:50%;\">
     						<strong>No Managed Events!</strong>
   						</div>";
 					}
 				echo "</div>
 
 				<div id=\"participatedEventsTable\" class=\"tab-pane fade\" role=\"tabpanel\" aria-labelledby=\"participatedEvents-tab\">
-				<input class=\"form-control m-2\" id=\"searchField6\" type=\"text\" placeholder=\"Search..\">
-  				<br>";
+				";
 					if($o>0)
 					{
 						
-						echo "<table class=\"table table-hover m-3\" style=\"width:90%\">
+						echo "
+						<input class=\"form-control mt-2\" id=\"searchField6\" type=\"text\" placeholder=\"Search..\" style=\"width:50%;\">
+  						<br>
+  						<table class=\"table table-hover\" style=\"width:90%\">
 						<thead>
 						<tr>
 						<th scope=\"col\">#</th>
@@ -516,10 +537,26 @@ if(isset($_POST["submit"]))
 					} //if($j>0)
 					else
 					{
-						echo "<div class=\"alert alert-danger m-3\">
+						echo "<div class=\"alert alert-danger m-3\" style=\"width:50%;\">
     						<strong>No Participated Events!</strong>
   						</div>";
 					}
+				echo "</div>
+
+				<div id=\"gradeTable\" class=\"tab-pane fade\" role=\"tabpanel\" aria-labelledby=\"grade-tab\">";
+				$command = escapeshellcmd("decisiontree.py $register");
+				$output = shell_exec($command);
+				// echo "&nbsp; &nbsp;".$output;
+				echo "
+				<div class=\"container row mt-3 p-0\" style=\"width:70%;\">
+					<div class=\"card border-primary ml-5 col-sm-6 p-0\" style=\"height:100%;\">
+						<div class=\"class-header p-3 bg-light text-primary\" style=\"width:100%;\"><strong>Predicted Grade</strong></div>
+							<div class=\"class-body text-primary p-3\">
+								<p class=\"card-text\"><strong>Board: </strong>".$output."</p>
+							</div>
+						</div>
+				</div>";
+
 				echo "</div>
 
 			</div>

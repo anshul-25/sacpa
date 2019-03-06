@@ -2,16 +2,22 @@
 
 require("db.php");
 
+if(isset($_POST["submit"]))
+{
+	$course = $_POST["inputCourse"];
+	$batch = $_POST["inputBatch"];
 
+	$applicants="Select count(distinct student.RegisterNo) as si from placements, student where student.RegisterNo = placements.Studentid and  student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch;
+	$app_res=$conn->query($applicants);
+	$app_row=$app_res->fetch_assoc();
+
+	$selects="SELECT COUNT(student.RegisterNo) from student, placements p,company c where student.RegisterNo = p.Studentid and p.rounds_qualified=c.No_of_rounds_conducted and p.companyid = c.idCompany and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch;
+	$sel_res=$conn->query($selects);
+	$sel_row=$sel_res->fetch_assoc();
+
+
+}
 // ------------------------FOR STATISTICS-------------------------
-$applicants="Select count(distinct Studentid) as si from placements";
-$app_res=$conn->query($applicants);
-$app_row=$app_res->fetch_assoc();
-
-$selects="SELECT COUNT(p.Studentid) from placements p,company c where p.rounds_qualified=c.No_of_rounds_conducted and p.companyid = c.idCompany";
-$sel_res=$conn->query($selects);
-$sel_row=$sel_res->fetch_assoc();
-
 
 ?>
 
@@ -85,101 +91,142 @@ $sel_row=$sel_res->fetch_assoc();
 					</a>
 				</div>
 				<!-- </div> -->
-			</nav>
-
-			<div class="row w-100 m-0" style="padding-top: 75px;">
-				<div class="col-7 p-4">
-					<div class="card-deck">
-						<!-- -------------------------------------------CARD 1---------------------------------------------------->
-						<!-- pie chart for card 1 -->
+				<form class="form-inline" id="myform" action="#" method="POST">
+					<select class="form-control mr-2" name="inputCourse" id="inputCourse" required>
+						<!-- <option selected="true" disabled>Please select Programme</option> -->
+						<option value="">Please Select Programme</option>
 						<?php
-						$que = "SELECT company.CompanyName, COUNT(placements.Studentid) from company, placements where placements.rounds_qualified = company.No_of_rounds_conducted and placements.companyid =company.idCompany GROUP by company.CompanyName";
-						$res5 = $conn->query($que);
-						?>
-						<script type="text/javascript">
-							google.charts.load('current', {'packages':['corechart']});
-							google.charts.setOnLoadCallback(drawChart);
+						$prog_sql="SELECT * FROM programme ORDER BY Course_Name ASC";
+						$prog_result=$conn->query($prog_sql);
 
-							function drawChart() {
-
-								var data = google.visualization.arrayToDataTable([
-									['Company', 'Selected Candidates'],
-									<?php
-									while($row=$res5->fetch_assoc())
-									{
-										echo "['".$row["CompanyName"]."',".$row["COUNT(placements.Studentid)"]."],";
-									}
-									?>
-									]);
-
-								var options = {
-									title: 'Selected Candidates'
-								};
-
-								var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-								chart.draw(data, options);
+						if($prog_result->num_rows > 0)
+						{
+							while($prog_row=$prog_result->fetch_assoc())
+								{ ?>
+									<option value="<?php echo $prog_row['idCourse']; ?>"><?php echo $prog_row['Course_Name']; ?></option>
+								<?php		}
 							}
-						</script>
 
-						<?php
+							?>
+
+						</select>
+						<select class="form-control mr-2" name="inputBatch" id="inputBatch" required>
+							<option value="">Select Batch</option>
+							<?php
+							$batch_q="select DISTINCT Year_of_Admission from student order by Year_of_Admission ASC";
+							$batch_r=$conn->query($batch_q);
+
+							if($batch_r->num_rows > 0)
+							{
+								while($batch_row = $batch_r->fetch_assoc())
+								{
+									?>
+									<option><?php echo $batch_row["Year_of_Admission"]; ?></option>
+									<?php
+								}
+							}
+							?>
+						</select>
+						<button class="btn btn-outline-success my-2 my-sm-0" type="Submit" name="submit">Submit</button>
+					</form>
+				</nav>
+
+				<div class="row w-100 m-0" style="padding-top: 75px;">
+					<div class="col-7 p-4">
+						<div class="card-deck">
+							<!-- -------------------------------------------CARD 1---------------------------------------------------->
+							<!-- pie chart for card 1 -->
+							<?php
+							if(isset($_POST["submit"]))
+							{
+								$que = "SELECT company.CompanyName, COUNT(student.RegisterNo) from company, placements,student where student.RegisterNo = placements.Studentid and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch." and placements.rounds_qualified = company.No_of_rounds_conducted and placements.companyid =company.idCompany GROUP by company.CompanyName";
+								$res5 = $conn->query($que);
+							}
+							?>
+							<script type="text/javascript">
+								google.charts.load('current', {'packages':['corechart']});
+								google.charts.setOnLoadCallback(drawChart);
+
+								function drawChart() {
+
+									var data = google.visualization.arrayToDataTable([
+										['Company', 'Selected Candidates'],
+										<?php
+										while($row=$res5->fetch_assoc())
+										{
+											echo "['".$row["CompanyName"]."',".$row["COUNT(student.RegisterNo)"]."],";
+										}
+										?>
+										]);
+
+									var options = {
+										title: 'Selected Candidates'
+									};
+
+									var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+									chart.draw(data, options);
+								}
+							</script>
+
+							<?php
 				// ----------FOR TABLE1-------
-						$list="SELECT placements.Studentid,concat(student.FirstName,' ',student.LastName) as Name,company.CompanyName,company.Role,company.CTC_or_Stipend FROM placements, company, student where placements.rounds_qualified = company.No_of_rounds_conducted and placements.companyid = company.idCompany and placements.Studentid = student.RegisterNo";
-						$res=$conn->query($list);
-						?>
-						<div class="card shadow-lg bg-white rounded">
-							<h5 class="card-header">Students - Placed</h5>
-							<div class="card-body">
-								<div id="piechart"></div>
-								<p class="card-text">Report containing details of students who have been placed.</p>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".placed_students_table">View</button>
-								<div class="modal fade placed_students_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
-									<div class="modal-dialog modal-lg" style="max-width:1000px;">
-										<div class="modal-content">
-											<div class="modal-header bg-info">
-												<h5 class="modal-title">List of Placed Students</h5>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body modal-body-e">
-												<input class="form-control ml-3 mt-3" id="searchField1" type="text" placeholder="Search.." style="width:50%;"/>
-												<br>
+							$list="SELECT student.RegisterNo,concat(student.FirstName,' ',student.LastName) as Name,company.CompanyName,company.Role,company.CTC_or_Stipend FROM placements, company, student where student.RegisterNo = placements.Studentid and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch." and placements.rounds_qualified = company.No_of_rounds_conducted and placements.companyid = company.idCompany and placements.Studentid = student.RegisterNo";
+							$res=$conn->query($list);
+							?>
+							<div class="card shadow-lg bg-white rounded">
+								<h5 class="card-header">Students - Placed</h5>
+								<div class="card-body">
+									<div id="piechart"></div>
+									<p class="card-text">Report containing details of students who have been placed.</p>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".placed_students_table">View</button>
+									<div class="modal fade placed_students_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
+										<div class="modal-dialog modal-lg" style="max-width:1000px;">
+											<div class="modal-content">
+												<div class="modal-header bg-info">
+													<h5 class="modal-title">List of Placed Students</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body modal-body-e">
+													<input class="form-control ml-3 mt-3" id="searchField1" type="text" placeholder="Search.." style="width:50%;"/>
+													<br>
 
 
-												<!-- if($i>0) -->
-												<!-- { -->
+													<!-- if($i>0) -->
+													<!-- { -->
 
 
-												<table class="table table-hover m-2" style="max-width:1100px;">
-													<thead>
-														<tr>
-															<th scope="col">#</th>
-															<th scope="col">Register Number</th>
-															<th scope="col">Name</th> 
-															<th scope="col">Company Name</th>
-															<th scope="col">Role Offered</th>
-															<th scope="col">CTC/Stipend</th>
-														</tr>
-													</thead>
-
-													<?php 
-													$k=0;
-													while($row=$res->fetch_assoc())
-													{
-														?>
-														<tbody id="reportTables">
+													<table class="table table-hover m-2" style="max-width:1100px;">
+														<thead>
 															<tr>
-																<th scope="row"><?php echo($k+1) ?></th>
-																<td><?php echo $row["Studentid"]?></td>
-																<td><?php echo $row["Name"]?></td>
-																<td><?php echo $row["CompanyName"]?></td>
-																<td><?php echo $row["Role"]?></td>
-																<td><?php echo $row["CTC_or_Stipend"]?></td>
+																<th scope="col">#</th>
+																<th scope="col">Register Number</th>
+																<th scope="col">Name</th> 
+																<th scope="col">Company Name</th>
+																<th scope="col">Role Offered</th>
+																<th scope="col">CTC/Stipend</th>
 															</tr>
-														</tbody>
-														<?php
-														$k=$k+1;
+														</thead>
+
+														<?php 
+														$k=0;
+														while($row=$res->fetch_assoc())
+														{
+															?>
+															<tbody id="reportTables">
+																<tr>
+																	<th scope="row"><?php echo($k+1) ?></th>
+																	<td><?php echo $row["RegisterNo"]?></td>
+																	<td><?php echo $row["Name"]?></td>
+																	<td><?php echo $row["CompanyName"]?></td>
+																	<td><?php echo $row["Role"]?></td>
+																	<td><?php echo $row["CTC_or_Stipend"]?></td>
+																</tr>
+															</tbody>
+															<?php
+															$k=$k+1;
 											}//while
 											?>
 										</table>	
@@ -193,13 +240,13 @@ $sel_row=$sel_res->fetch_assoc();
 				<?php
 				$t=0;$g=0;$a=0;
 
-				$q="select p.Studentid,concat(s.FirstName,' ',s.LastName) as Name, SUM(p.rounds_qualified),SUM(c.No_of_rounds_conducted) from placements p, company c, student s where p.companyid = c.idCompany and p.Studentid NOT IN (SELECT p1.Studentid from placements p1, company c1 where p1.rounds_qualified = c1.No_of_rounds_conducted and p1.companyid = c1.idCompany) and p.Studentid = s.RegisterNo GROUP BY p.Studentid";
+				$q="select s.RegisterNo,concat(s.FirstName,' ',s.LastName) as Name, SUM(p.rounds_qualified),SUM(c.No_of_rounds_conducted) from placements p, company c, student s where s.RegisterNo = p.Studentid and p.companyid = c.idCompany and p.Studentid NOT IN (SELECT p1.Studentid from placements p1, company c1 where p1.rounds_qualified = c1.No_of_rounds_conducted and p1.companyid = c1.idCompany) and p.Studentid = s.RegisterNo and s.ProgrammeID =".$course." and s.Year_of_Admission =".$batch." GROUP BY p.Studentid";
 				$res = $conn->query($q);
 
 				$i=0;
 				while($row = $res->fetch_assoc())
 				{
-					$rate[$i][0] = $row["Studentid"];
+					$rate[$i][0] = $row["RegisterNo"];
 					$rate[$i][1] = $row["Name"]; 
 					$rate[$i][2] = round(($row["SUM(p.rounds_qualified)"]/$row["SUM(c.No_of_rounds_conducted)"]) * 100,2);
 					if($rate[$i][2] >= 50)
@@ -314,10 +361,10 @@ $sel_row=$sel_res->fetch_assoc();
 
 			<!-- -------------------------------------PHP FOR GRAPHS---------------------------------- -->
 			<?php
-			$q1 = "Select p.companyid,c.CompanyName, sum(c.No_of_rounds_conducted), sum(p.rounds_qualified),count(p.Studentid) from placements p, company c where p.rounds_qualified > 0 and p.companyid =c.idCompany group by c.CompanyName ORDER BY p.companyid ASC";
+			$q1 = "Select p.companyid,c.CompanyName, sum(c.No_of_rounds_conducted), sum(p.rounds_qualified),count(p.Studentid) from placements p, company c, student where student.RegisterNo = p.Studentid and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch." and p.rounds_qualified > 0 and p.companyid =c.idCompany group by c.CompanyName ORDER BY p.companyid ASC";
 			$res1 = $conn->query($q1);
 
-			$q2 = "Select p.companyid,count(p.Studentid) from placements p, company c where c.No_of_rounds_conducted = p.rounds_qualified and p.companyid=c.idCompany group by p.companyid order by p.companyid ASC";
+			$q2 = "Select p.companyid,count(p.Studentid) from placements p, company c, student where student.RegisterNo = p.Studentid and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch." and c.No_of_rounds_conducted = p.rounds_qualified and p.companyid=c.idCompany group by p.companyid order by p.companyid ASC";
 			$res2 = $conn->query($q2);
 
 			$i=0;
@@ -358,7 +405,7 @@ $sel_row=$sel_res->fetch_assoc();
 			}
 			?>
 			<div class="card-deck mt-3">
-<!-- -------------------------------------------CARD 3-------------------------------------------------- -->
+				<!-- -------------------------------------------CARD 3-------------------------------------------------- -->
 				<script type="text/javascript">
 					google.charts.load('current', {'packages':['bar']});
 					google.charts.setOnLoadCallback(drawChart);
@@ -413,19 +460,45 @@ $sel_row=$sel_res->fetch_assoc();
 						</div>
 					</div>
 				</div>
-<!-- ---------------------------------------------------------CARD 4------------------------------------------------------->
+				<!-- ---------------------------------------------------------CARD 4------------------------------------------------------->
 				<?php
-					$k=0;
-					while($k<$i)
-					{
-						$temp = ($arr[$k][1]/$arr[$k][2])*100;
-						$extra[$k][0]=$arr[$k][0];
-						$extra[$k][1]=$arr[$k][5];
-						$extra[$k][2]=$arr[$k][3];
-						$extra[$k][3]=$temp;
-					}
+				$k=0;
+				while($k<$i)
+				{
+					$temp = ($arr[$k][1]/$arr[$k][2])*100;
+					$extra[$k][0]=$arr[$k][0];
+					$extra[$k][1]=$arr[$k][5];
+					$extra[$k][2]=$arr[$k][3];
+					$extra[$k][3]=$temp;
+					$k=$k+1;
+				}
 
-					
+				$nu = sizeof($extra); 
+				for($y = 0; $y < $nu; $y++) 
+				{ 
+					$swapped = False; 
+					for ($z = 0; $z < $nu - $y - 1; $z++) 
+					{ 
+						if ($extra[$z][3] > $extra[$z+1][3]) 
+						{ 
+							$t1 = $extra[$z][0];
+							$t2 = $extra[$z][1]; 
+							$t3 = $extra[$z][2];
+							$t4 = $extra[$z][3];
+							$extra[$z][0] = $extra[$z+1][0];
+							$extra[$z][1] = $extra[$z+1][1]; 
+							$extra[$z][2] = $extra[$z+1][2];
+							$extra[$z][3] = $extra[$z+1][3];
+							$extra[$z+1][0] = $t1;
+							$extra[$z+1][1] = $t2; 
+							$extra[$z+1][2] = $t3;
+							$extra[$z+1][3] = $t4;
+							$swapped = True; 
+						} 
+					} 
+					if ($swapped == False) 
+						break; 
+				} 
 
 				?>
 				<script type="text/javascript">
@@ -441,9 +514,9 @@ $sel_row=$sel_res->fetch_assoc();
 							$k=0;
 							while($k<$i)
 							{
-								$temp = ($arr[$k][1]/$arr[$k][2])*100;
+								//$temp = ($arr[$k][1]/$arr[$k][2])*100;
 
-								echo "['".$arr[$k][0]."',".(int)$arr[$k][5].",".(int)$arr[$k][3].",".(float)$temp."],";
+								echo "['".$extra[$k][0]."',".(int)$extra[$k][1].",".(int)$extra[$k][2].",".(float)$extra[$k][3]."],";
 								$k=$k+1;
 							}
 							?>
@@ -499,10 +572,10 @@ $sel_row=$sel_res->fetch_assoc();
 		<div class="col-5 p-4">
 			<div class="alert alert-success shadow-sm rounded">
 				<p><strong>Total Applicants - </strong><?php echo $app_row["si"] ?> </p>
-				<p><strong>Total Selected Applicants - </strong><?php echo $sel_row["COUNT(p.Studentid)"] ?> </p>
-				<p><strong>Not Selected - </strong><?php echo ($app_row["si"]-$sel_row["COUNT(p.Studentid)"]) ?></p>
-				<p><strong>Selected Percentage - </strong><?php echo round(( $sel_row["COUNT(p.Studentid)"]/$app_row["si"] * 100 )) ?>%</p>
-				<p><strong>Not Selected Percentage - </strong><?php echo round(( ($app_row["si"]-$sel_row["COUNT(p.Studentid)"])/$app_row["si"] * 100 ),2) ?>%</p>
+				<p><strong>Total Selected Applicants - </strong><?php echo $sel_row["COUNT(student.RegisterNo)"] ?> </p>
+				<p><strong>Not Selected - </strong><?php echo ($app_row["si"]-$sel_row["COUNT(student.RegisterNo)"]) ?></p>
+				<p><strong>Selected Percentage - </strong><?php echo round(( $sel_row["COUNT(student.RegisterNo)"]/$app_row["si"] * 100 )) ?>%</p>
+				<p><strong>Not Selected Percentage - </strong><?php echo round(( ($app_row["si"]-$sel_row["COUNT(student.RegisterNo)"])/$app_row["si"] * 100 ),2) ?>%</p>
 				<br>
 				<p><strong>No. of students requiring help in- </strong></p>
 				<p>&nbsp; &nbsp;<b><i>Aptitude - </i></b><?php echo $a?></p>

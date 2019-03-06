@@ -3,6 +3,10 @@ require("db.php");
 
 if (isset($_POST["submit"])) 
 {
+	$batch = $_POST["inputBatch"];
+	$course = $_POST["inputCourse"];
+
+	//--------------------------------------------------
 
 	$male = "Select count(title) from student where title = 'Mr'";
 	$female = "Select count(title) from student where title = 'Ms' or title = 'Mrs'";
@@ -140,6 +144,23 @@ if (isset($_POST["submit"]))
 							?>
 
 						</select>
+						<select class="form-control mr-2" name="inputBatch" id="inputBatch" required>
+							<option value="">Select Batch</option>
+							<?php
+								$batch_q="select DISTINCT Year_of_Admission from student order by Year_of_Admission ASC";
+								$batch_r=$conn->query($batch_q);
+
+								if($batch_r->num_rows > 0)
+								{
+									while($batch_row = $batch_r->fetch_assoc())
+									{
+										?>
+											<option><?php echo $batch_row["Year_of_Admission"]; ?></option>
+										<?php
+									}
+								}
+							?>
+						</select>
 						<button class="btn btn-outline-success my-2 my-sm-0" type="Submit" name="submit">Submit</button>
 					</form>
 				</div>
@@ -155,7 +176,7 @@ if (isset($_POST["submit"]))
 <!-- ---------------------------------FOR FIRST CARD------------------------------------------------- -->
 						<?php
 						$course = $_POST["inputCourse"];
-						$studInfo = "select RegisterNo, FirstName, LastName, PhoneNo, EmailIdPersonal, ReservationCategory, Year_of_Admission from student s where s.ProgrammeID =" .$course;
+						$studInfo = "select RegisterNo, FirstName, LastName, PhoneNo, EmailIdPersonal, ReservationCategory, Year_of_Admission from student s where s.ProgrammeID =" .$course." and s.Year_of_Admission =".$batch;
 
 						$i = 0;
 						$res = $conn->query($studInfo);
@@ -249,7 +270,7 @@ if (isset($_POST["submit"]))
 		<?php
 		require("db.php");
 		$j=0;							
-		$regno = "select RegisterNo, CONCAT(FirstName, ' ', LastName) AS Name from student";
+		$regno = "select RegisterNo, CONCAT(FirstName, ' ', LastName) AS Name from student where ProgrammeID =".$course;
 		$res=$conn->query($regno);
 
 		while($row=$res->fetch_assoc())
@@ -420,7 +441,7 @@ if (isset($_POST["submit"]))
 		<?php
 
 		$j=0;							
-		$regno = "select RegisterNo, CONCAT(FirstName, ' ', LastName) AS Name from student where ProgrammeID=".$course;
+		$regno = "select RegisterNo, CONCAT(FirstName, ' ', LastName) AS Name from student where ProgrammeID =".$course." and Year_of_Admission = ".$batch;
 		$res=$conn->query($regno);
 
 		while($row=$res->fetch_assoc())
@@ -594,7 +615,7 @@ if (isset($_POST["submit"]))
 
 		<!-- ---------------------------------------------FOURTH CARD------------------------------------------- -->
 		<?php
-		$q="SELECT co.Name, COUNT(co.idCountry) from city c, state s, country co, student st where st.City_id = c.idCity and c.state_id = s.idState and s.country_id = co.idCountry GROUP BY co.idCountry";
+		$q="SELECT co.Name, COUNT(co.idCountry) from city c, state s, country co, student st where st.ProgrammeID =".$course." and st.Year_of_Admission = ".$batch." and st.City_id = c.idCity and c.state_id = s.idState and s.country_id = co.idCountry GROUP BY co.idCountry";
 		$res = $conn->query($q);
 		$i=0;
 		while($row = $res->fetch_assoc())
@@ -804,7 +825,7 @@ if (isset($_POST["submit"]))
 		<?php
 		require('db.php');
 
-		$country_list="select co.idCountry, co.Name from student s, city ci, state st, country co where s.City_id=ci.idCity and ci.state_id=st.idState and st.country_id=co.idCountry group by co.Name";
+		$country_list="select co.idCountry, co.Name from student s, city ci, state st, country co where s.ProgrammeID =".$course." and s.Year_of_Admission = ".$batch." and s.City_id=ci.idCity and ci.state_id=st.idState and st.country_id=co.idCountry group by co.Name";
 
 
 		$res1=$conn->query($country_list);

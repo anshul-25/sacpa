@@ -11,13 +11,19 @@
 
 	<style type="text/css">
 	.jumbotron {
-		background-color: #232390;
+		/*background-color: #ffffff;*/
 		color: #fff;
 		padding: 100px 25px;
-		min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-		min-height: 100vh; /* These two lines are counted as one 🙂       */
+		min-height: 100%;  
+		min-height: 100vh; 
 		display: flex;
 		align-items: center;
+		background: #0575E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 	}
 
 	.input-group
@@ -38,49 +44,52 @@
 <body>
 	<div class="jumbotron text-center m-0 rounded-0">
 		<div class="container">
-			<h1>Analysis and View</h1> 
+			<!-- <div style="background-color: #cae8ca; border-radius: 25px;"> -->
+				<h1>Analysis and View</h1> 
+			<!-- </div> -->
 			<br>
 			<div class="card-deck" style="display: flex;">
-					<div class="card">
+
+					<div class="card shadow-lg">
 					
-						<img class="card-img-top" src="http:\\localhost\sacpa\student.png" alt="student"> 
+						<img class="card-img-top p-1" src="student.png" alt="student" > 
 						
 						<div class="card-body">
 							<h5 class="card-title text-dark">Student Information</h5>
 							
-							<a href="http:\\localhost\sacpa\student_info_tables.php" class="btn btn-primary">Click Here</a>
+							<a href="student_info_tables.php" class="btn btn-primary">Click Here</a>
 						</div>
 					</div>
 				
 				
-					<div class="card">
-						<img class="card-img-top" src="http:\\localhost\sacpa\reports1.jpg" alt="student">
+					<div class="card shadow-lg">
+						<img class="card-img-top" src="reports1.jpg" alt="student" style="height: 261px;">
 						<div class="card-body">
 							<h5 class="card-title text-dark">Reports and Graphs</h5>
 							
-							<a href="http:\\localhost\sacpa\reports.php" class="btn btn-primary">Click Here</a>
+							<a href="reports.php" class="btn btn-primary">Click Here</a>
 						</div>
 					</div>
 			
 				
-					<div class="card">
-						<img class="card-img-top" src="http:\\localhost\sacpa\placement.jpg" alt="student" >
+					<div class="card shadow-lg">
+						<img class="card-img-top p-1" src="placement.jpg" alt="student" >
 						<div class="card-body">
 							<h5 class="card-title text-dark">Placement Information</h5>
 							
 
-							<a href="http:\\localhost\sacpa\temp_placement_graph.php" class="btn btn-primary">Click Here</a>
+							<a href="placement.php" class="btn btn-primary">Click Here</a>
 						</div>
 					</div>
 				
 
 				
-					<div class="card">
-						<img class="card-img-top" src="http:\\localhost\sacpa\academic1.jpg" alt="student" >
+					<div class="card shadow-lg">
+						<img class="card-img-top" src="academic.png" alt="student" style="height: 261px;">
 						<div class="card-body">
 							<h5 class="card-title text-dark">Academic Information</h5>
 							
-							<a href="http:\\localhost\sacpa\academic_graph.php" class="btn btn-primary">Click Here</a>
+							<a href="academic_graph.php" class="btn btn-primary">Click Here</a>
 						</div>
 					</div>
 				

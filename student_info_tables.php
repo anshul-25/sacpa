@@ -552,7 +552,7 @@ if(isset($_POST["submit"]))
 					<div class=\"card border-primary ml-5 col-sm-6 p-0\" style=\"height:100%;\">
 						<div class=\"class-header p-3 bg-light text-primary\" style=\"width:100%;\"><strong>Predicted Grade</strong></div>
 							<div class=\"class-body text-primary p-3\">
-								<p class=\"card-text\"><strong>Board: </strong>".$output."</p>
+								<p class=\"card-text\">".$output."</p>
 							</div>
 						</div>
 				</div>";

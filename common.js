@@ -20,6 +20,7 @@ function getStates(id,selectId) {
 	});
 };
 
+
 var max_fields      = 10;
 var wrapper         = $(".addDetails");
 var add_button      = $(".add_form_field");
@@ -32,6 +33,36 @@ function addActivity() {
 		$.ajax({
 			type: "GET",
 			url: "addActivity.php",
+			data: "x="+x,
+			success: function(result) {
+				$(wrapper).append(result);
+			}
+		});
+	}
+};
+
+function addCC() {
+	if(x < max_fields)
+	{
+		x++;
+		$.ajax({
+			type: "GET",
+			url: "addCC.php",
+			data: "x="+x,
+			success: function(result) {
+				$(wrapper).append(result);
+			}
+		});
+	}
+};
+
+function addClubs() {
+	if(x < max_fields)
+	{
+		x++;
+		$.ajax({
+			type: "GET",
+			url: "addClubs.php",
 			data: "x="+x,
 			success: function(result) {
 				$(wrapper).append(result);

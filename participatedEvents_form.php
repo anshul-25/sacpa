@@ -73,14 +73,14 @@ if(isset($_POST['submit']))
   
   <style type="text/css">
   html, body{
-    height:100%; /* important to vertically align the container */
+    height:100%; 
     margin:0;
     padding:0;
   }
 
   .vertical-center {
-    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one 🙂       */
+    min-height: 100%;  
+    min-height: 100vh;
     display: flex;
     align-items: top;
   }
@@ -105,7 +105,10 @@ if(isset($_POST['submit']))
             <div class="form-row">
               <div class="form-group col-md-3">
                <input type="text" class="form-control" name="inputRegisterNo[]" id="inputRegisterNo"  pattern="[0-9]{8}" placeholder="Register No.">
-             </div>	
+             </div>
+             <div class="form-group col-md-3">
+            <input placeholder="Date" type="date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" name="inputDate[]" id="inputDate" >
+          </div>	
            </div>
            <div class="form-row">
             <div class="form-group col-md-6">
@@ -114,18 +117,16 @@ if(isset($_POST['submit']))
            <div class="form-group col-md-6">
              <input type="text" class="form-control" name="inputEventLocation[]" id="inputEventLocation" placeholder="Event Location">
            </div>	
-           <div class="form-group col-md-3">
-            <input placeholder="Date" type="date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" name="inputDate[]" id="inputDate" >
-          </div>
+           
 
 
         </div>
         <div class="form-row"> 
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <input type="text" class="form-control" name="inputPosition[]" id="inputPosition" placeholder="Position">
           </div>
 
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <select name="inputMemberNo[]" id="inputMemberNo" class="form-control" required>
               <option selected>Number of Team Members</option>
               <option>1</option>
@@ -137,13 +138,6 @@ if(isset($_POST['submit']))
           </div>
         </div> 
       </div>
-      <!--  <button type="button" class="add_form_field btn btn-success">Add Event &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>  -->
-      <!-- <br><br>
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </div> -->
       <br>
       <button type="button" class="add_form_field btn btn-outline-primary">Add Participated Event +</button>
       <button type="Submit" name="submit" class="btn btn-primary">Submit</button>

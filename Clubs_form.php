@@ -8,6 +8,10 @@ if(isset($_POST['submit']))
 
   $inputRegisterNo = $_POST["inputRegisterNo"];
   $inputClubName = $_POST["inputClubName"];
+  if($inputClubName[0]==0)
+  {
+    $inputClubName=$_POST["inputClubName1"];
+  }
   $inputStartDate = $_POST["inputStartDate"];
   $inputEndDate = $_POST["inputEndDate"];
   $inputRole = $_POST["inputRole"];
@@ -42,7 +46,7 @@ if(isset($_POST['submit']))
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $(document).ready(function() 
     {
       var max_fields      = 10;
@@ -70,7 +74,8 @@ if(isset($_POST['submit']))
         e.preventDefault(); $(this).parent('div').remove(); x--;
       })
     });    
-  </script>
+  </script> -->
+
   <style type="text/css">
   html, body{
     height:100%; /* important to vertically align the container */
@@ -109,9 +114,36 @@ if(isset($_POST['submit']))
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-12">
-                <input type="text" class="form-control" name="inputClubName[]" id="inputClubName" placeholder="Club/Organisation Name" required>
+              <div class="form-group col-md-6">
+                <select name="inputClubName[]" id="inputClubName" class="form-control" onchange="getClubs()">
+                  <option value="" selected disabled>Select Club/Organisation</option>
+                  <?php
+                  $q="Select distinct Name from clubs_organisations";
+                  $r=$conn->query($q);
+                  while($row=$r->fetch_assoc())
+                  {
+                    echo "<option>".$row["Name"]."</option>";
+                  }
+                  ?>
+                  <option value="0">Other</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" name="inputClubName1[]" id="inputClubName1" placeholder="Club/Organisation Name" disabled>
               </div>	
+              <script type="text/javascript">
+                function getClubs()
+                {
+                  if(document.getElementById('inputClubName').value == 0)
+                  {
+                    document.getElementById('inputClubName1').disabled = false;
+                  }
+                  else
+                  {
+                    document.getElementById('inputClubName1').disabled = true; 
+                  }
+                }
+              </script>
               <div class="form-group col-md-6">
                 <input placeholder="Start Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="inputStartDate[]" id="inputStartDate" >
               </div>
@@ -136,14 +168,16 @@ if(isset($_POST['submit']))
             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
           </div>
         </div> -->
-         <br>
-      <button type="button" class="add_form_field btn btn-outline-primary">Add Clubs/Organisation Event +</button>
-      <button type="Submit" name="submit" class="btn btn-primary">Submit</button>
+        <br>
+        <div class="addDetails">
+        </div>
+        <br>
+        <button type="button" onclick="addClubs()" class="add_form_field btn btn-outline-primary">Add Clubs/Organisation Event +</button>
+        <button type="Submit" name="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 </div>
-
-
+<script type="text/javascript" src="common.js"></script>
 </body>
 </html>

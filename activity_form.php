@@ -45,47 +45,17 @@ if(isset($_POST['submit']))
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <!-- 
-  <script type="text/javascript">
-  $(document).ready(function() 
-  {
-    var max_fields      = 10;
-    var wrapper         = $(".details");
-    var add_button      = $(".add_form_field");
- 
-    var x = 1;
-    $(add_button).click(function(e)
-    {
-        e.preventDefault();
-        if(x < max_fields)
-        {
-            x++;
-             
-
-             $(wrapper).append('<div><div class="buttoncontainer"><div class="form-group details"><label for="projectdetails"><strong>Activity Details - '+x+'</strong></label><div class="form-row"><div class="form-group col-md-3"><input type="text" class="form-control" name="inputRegisterNo[]" id="inputRegisterNo" placeholder="Register No."></div>  <div class="form-group col-md-3"><select name ="inputActivityType[]" id="inputActivityType" class="form-control"><option selected>Research</option><option>Project</option></select></div></div><div class="form-row"><div class="form-group col-md-6"><input type="text" class="form-control" id="inputProjectName" placeholder="Research Name"></div>  <div class="form-group col-md-6"><input type="text" class="form-control" id="inputProjectDomain" placeholder="Upload Link"></div>  <div class="form-group col-md-3"><label for="startdate">Start Date</label><input type="date" class="form-control" id="inputStartDate"></div><div class="form-group col-md-3"><label for="enddate">End Date</label><input type="date" class="form-control" id="inputEndDate" ></div></div><div class="form-row"><div class="form-group col-md-3"><input type="text" class="form-control" id="inputProjectRole" placeholder="Role"></div><div class="form-group col-md-3"><input type="text" class="form-control" id="inputProjectWorkDesc" placeholder="Work Description"></div><div class="form-group col-md-3"><select id="inputMemberNo" class="form-control"><option selected>Number of Team Members</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div><div class="form-group col-md-3"><input type="text" class="form-control" id="inputProjectWorkDesc" placeholder="Stipend"></div></div></div></div><a href="#" class="delete">Delete</a></div>')
-        }
-      else
-      {
-        alert('You Reached the limits')
-      }
-    });
- 
-    $(wrapper).on("click",".delete", function(e){
-        e.preventDefault(); $(this).parent('div').remove(); x--;
-    })
-  });
-</script> -->
 
 <style type="text/css">
 html, body{
-  height:100%; /* important to vertically align the container */
+  height:100%; 
   margin:0;
   padding:0;
 }
 
 .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one 🙂       */
+  min-height: 100%;  
+  min-height: 100vh;
   display: flex;
   align-items: top;
 }
@@ -131,10 +101,10 @@ html, body{
               </div>
             </div>
             <div class="form-row">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-3">
                <input type="text" class="form-control" name="inputProjectName[]" id="inputProjectName" placeholder="Topic">
              </div>	
-             <div class="form-group col-md-6">
+             <div class="form-group col-md-3">
                <input type="text" class="form-control"  name = "inputProjectDomain[]" id="inputProjectDomain" placeholder="Upload Link">
              </div>	
              <div class="form-group col-md-3">

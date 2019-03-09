@@ -141,21 +141,7 @@ if(isset($_POST["submit"]))
         <!-- </div> -->
 
         <div class="form-row" >
-          <div class="form-group col-md-3">
-
-            <select name="inputCity"  id="inputCity" class="form-control" required>
-              <option selected disabled>Please select city</option>
-            </select>
-          </div>
-          <div class="form-group col-md-3">
-
-            <select class="form-control" name="inputState"  id="inputState" onchange="getCity(this.value,'#inputCity')" required>
-              <option selected disabled>Please select state</option>
-            </select>
-          </div>
-
-          <div class="form-group col-md-3">
-
+           <div class="form-group col-md-3">
            <select class="form-control" name="inputCountry" onchange="getStates(this.value,'#inputState')" id="inputCountry" required>
              <option selected="true" disabled>Please select country</option>
 
@@ -168,16 +154,27 @@ if(isset($_POST["submit"]))
                while($country_row=$country_result->fetch_assoc())
                  { ?>
                   <option value="<?php echo $country_row['idCountry']; ?>"><?php echo $country_row['Name']; ?></option>
-                <?php		}
+                <?php   }
               }
 
               ?>
-
             </select>
-
+          </div>
+           <div class="form-group col-md-3">
+            <select class="form-control" name="inputState"  id="inputState" onchange="getCity(this.value,'#inputCity')" required>
+              <option selected disabled>Please select state</option>
+            </select>
           </div>
           <div class="form-group col-md-3">
+            <select name="inputCity"  id="inputCity" class="form-control" required>
+              <option selected disabled>Please select city</option>
+            </select>
+          </div>
+         
 
+         
+
+          <div class="form-group col-md-3">
             <input type="text" class="form-control" name="inputZip" id="inputZip" placeholder="Zip" required>
           </div>
         </div>
@@ -252,7 +249,7 @@ if(isset($_POST["submit"]))
       <label for="dependentDetails"><strong>Guardian Details</strong></label>
       <!-- <div class="form-group"> -->
         <div class="form-row">
-         <div class="form-group col-md-3">
+         <div class="form-group col-md-4">
            <select name="inputDependentTitle" id="inputDependentTitle" class="form-control" required>
              <option disabled selected>Select Title</option>
              <option>Mrs.</option>
@@ -262,10 +259,10 @@ if(isset($_POST["submit"]))
              <option>None</option>
            </select>
          </div>
-         <div class="form-group col-md-3">
+         <div class="form-group col-md-4">
            <input type="text" class="form-control" name="inputDependentFirstName"  id="inputDependentFirstName" placeholder="First Name" required>
          </div>
-         <div class="form-group col-md-3">
+         <div class="form-group col-md-4">
            <input type="text" class="form-control" name="inputDependentThirdName"  id="inputDependentThirdName" placeholder="Last Name" required>
          </div>
        </div>
@@ -301,23 +298,9 @@ if(isset($_POST["submit"]))
          <input type="text" class="form-control" name="inputDependentStreet"  id="inputDependentStreet" placeholder="Street name/no." required>
        </div>
      </div>
+
      <div class="form-row" >
-      <div class="form-group col-md-3">
-
-        <select name="inputDependentCity" id ="inputDependentCity" class="form-control" required>
-          <option selected disabled>Please select city</option>
-        </select>
-      </div>
-      <div class="form-group col-md-3">
-
-        <select name="inputDependentState" id ="inputDependentState" onchange="getCity(this.value, '#inputDependentCity')"  class="form-control" required>
-          <option selected disabled>Please select state</option>
-        </select>
-      </div>
-
-      <div class="form-group col-md-3">
-
-
+       <div class="form-group col-md-3">
         <select class="form-control" name="inputDependentCountry" onchange="getStates(this.value,'#inputDependentState')" id="inputDependentCountry" required>
          <option selected="true" disabled>Please select country</option>
 
@@ -330,16 +313,24 @@ if(isset($_POST["submit"]))
            while($country_row=$country_result->fetch_assoc())
              { ?>
               <option value="<?php echo $country_row['idCountry']; ?>"><?php echo $country_row['Name']; ?></option>
-            <?php		}
+            <?php   }
           }
 
           ?>
-
         </select>
-
+      </div>
+       <div class="form-group col-md-3">
+        <select name="inputDependentState" id ="inputDependentState" onchange="getCity(this.value, '#inputDependentCity')"  class="form-control" required>
+          <option selected disabled>Please select state</option>
+        </select>
       </div>
       <div class="form-group col-md-3">
-
+        <select name="inputDependentCity" id ="inputDependentCity" class="form-control" required>
+          <option selected disabled>Please select city</option>
+        </select>
+      </div>
+     
+      <div class="form-group col-md-3">
         <input type="text" class="form-control" name="inputDependentZip"  id="inputDependentZip" placeholder="Zip" required>
       </div>
     </div>

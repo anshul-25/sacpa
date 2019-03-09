@@ -117,31 +117,24 @@ if(isset($_POST['submit']))
            <div class="form-group col-md-6">
              <input type="text" class="form-control" name="inputEventLocation[]" id="inputEventLocation" placeholder="Event Location">
            </div>	
-           <div class="form-group col-md-3">
+           <div class="form-group col-md-6">
             <input placeholder="Start Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="inputStartDate[]" id="inputStartDate" >
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-6">
             <input placeholder="End Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="inputEndDate[]" id="inputEndDate" >
           </div>
 
 
         </div>
         <div class="form-row"> 
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <input type="text" class="form-control" name="inputRole[]" id="inputRole" placeholder="Role">
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <input type="text" class="form-control" name="inputManagedEventsDesc[]" id="inputManagedEventsDesc" placeholder="Work Description">
           </div>
         </div> 
       </div>
-      <!-- <button type ="button" class="add_form_field btn btn-success">Add Event &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button> 
-      <br><br>
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </div> -->
        <br>
       <button type="button" class="add_form_field btn btn-outline-primary">Add Managed Event +</button>
       <button type="Submit" name="submit" class="btn btn-primary">Submit</button>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2019 at 05:11 PM
+-- Generation Time: Mar 07, 2019 at 06:39 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -40286,19 +40286,6 @@ INSERT INTO `programme` (`idCourse`, `Course_Name`, `No_of_semesters`, `Departme
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rounds`
---
-
-CREATE TABLE `rounds` (
-  `idRounds` int(11) NOT NULL,
-  `CompanyId` int(11) NOT NULL,
-  `RoundNo` int(11) NOT NULL,
-  `Round_Name` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `state`
 --
 
@@ -44813,12 +44800,6 @@ ALTER TABLE `placements`
 ALTER TABLE `programme`
   ADD PRIMARY KEY (`idCourse`),
   ADD KEY `dept_key_idx` (`Department_id`);
-
---
--- Indexes for table `rounds`
---
-ALTER TABLE `rounds`
-  ADD PRIMARY KEY (`idRounds`);
 
 --
 -- Indexes for table `state`

@@ -48,24 +48,28 @@ require("db.php");
 	if(isset($_POST["submit"]))
 	{
 		$register = $_POST["inputRegisterNo"];
-		$sem = $_POST["semester"];
-		if($sem > 0)
+		$q="Select * from sub_marks where Student_id=".$register;
+		$res= $conn->query($q);
+		if($res->num_rows > 0)
 		{
-			$marks = "Select s.Hours_Attended,s.CIA1_Obt,s.CIA2_Obt,s.CIA3_Obt,s.EndSem_Obt,s.Atten_Obt, su.SemesterNo, su.Subj_Name, su.CIA1_Max, su.CIA2_Max, su.CIA3_Max, su.EndSem_Max, su.Attendance_Max, su.Max_Hours from sub_marks s, subjects su where s.Subject_id = su.idSubjects and su.SemesterNo =".$sem." and Student_id=".$register;
-			$result=$conn->query($marks);
-
-			if($result->num_rows > 0)
+			$sem = $_POST["semester"];
+			if($sem > 0)
 			{
-				$x=0;
-				while($row = $result->fetch_assoc())
-				{
-					$g_marks[$x][0]=$row["Subj_Name"];
-					$g_marks[$x][1]=(($row["CIA1_Obt"]+$row["CIA2_Obt"]+$row["CIA3_Obt"]+$row["EndSem_Obt"]+$row["Atten_Obt"])/($row["CIA1_Max"]+$row["CIA2_Max"]+$row["CIA3_Max"]+$row["EndSem_Max"]+$row["Attendance_Max"]))*100;
-					$g_marks[$x][2]=($row["Hours_Attended"]/$row["Max_Hours"])*100;
+				$marks = "Select s.Hours_Attended,s.CIA1_Obt,s.CIA2_Obt,s.CIA3_Obt,s.EndSem_Obt,s.Atten_Obt, su.SemesterNo, su.Subj_Name, su.CIA1_Max, su.CIA2_Max, su.CIA3_Max, su.EndSem_Max, su.Attendance_Max, su.Max_Hours from sub_marks s, subjects su where s.Subject_id = su.idSubjects and su.SemesterNo =".$sem." and Student_id=".$register;
+				$result=$conn->query($marks);
 
-					$x=$x+1;
-				}	
-			}
+				if($result->num_rows > 0)
+				{
+					$x=0;
+					while($row = $result->fetch_assoc())
+					{
+						$g_marks[$x][0]=$row["Subj_Name"];
+						$g_marks[$x][1]=(($row["CIA1_Obt"]+$row["CIA2_Obt"]+$row["CIA3_Obt"]+$row["EndSem_Obt"]+$row["Atten_Obt"])/($row["CIA1_Max"]+$row["CIA2_Max"]+$row["CIA3_Max"]+$row["EndSem_Max"]+$row["Attendance_Max"]))*100;
+						$g_marks[$x][2]=($row["Hours_Attended"]/$row["Max_Hours"])*100;
+
+						$x=$x+1;
+					}	
+				}
 		?>
 <!-- -----------------------------------Marks for each------------------------------------------ -->
 			<script type="text/javascript">
@@ -288,7 +292,12 @@ require("db.php");
 	</div>
 
 <?php
-	} //end of if(isset)
+}
+else
+{
+	include 'modal_unsuccess_reports.html';
+}
+} //end of if(isset)
 ?>
 </div>
 </body>

@@ -1,38 +1,16 @@
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Language', 'Speakers (in millions)'],
-          ['Assamese', 13], ['Bengali', 83], ['Bodo', 1.4],
-          ['Dogri', 2.3], ['Gujarati', 46], ['Hindi', 300],
-          ['Kannada', 38], ['Kashmiri', 5.5], ['Konkani', 5],
-          ['Maithili', 20], ['Malayalam', 33], ['Manipuri', 1.5],
-          ['Marathi', 72], ['Nepali', 2.9], ['Oriya', 33],
-          ['Punjabi', 29], ['Sanskrit', 0.01], ['Santhali', 6.5],
-          ['Sindhi', 2.5], ['Tamil', 61], ['Telugu', 74], ['Urdu', 52]
-        ]);
+<?php
 
-        var options = {
-          title: 'Indian Language Use',
-          legend: 'none',
-          pieSliceText: 'label',
-          slices: {  4: {offset: 0.2},
-                    12: {offset: 0.3},
-                    14: {offset: 0.4},
-                    15: {offset: 0.5},
-          },
-        };
+require("db.php");
+$q_marks = "SELECT sub_marks.Subject_id, (sum(sub_marks.CIA1_Obt)+sum(sub_marks.CIA2_Obt)+sum(sub_marks.CIA3_Obt)+sum(sub_marks.EndSem_Obt)+sum(sub_marks.Atten_Obt)) as marks_obt, (sum(subjects.CIA1_Max)+sum(subjects.CIA2_Max)+sum(subjects.CIA3_Max)+sum(subjects.EndSem_Max)+sum(subjects.Attendance_Max)) as total_marks, subjects.SemesterNo from sub_marks, student,subjects where student.RegisterNo = sub_marks.Student_id and student.ProgrammeID=1 and student.Year_of_Admission=2017 and sub_marks.Subject_id = subjects.idSubjects and subjects.SemesterNo=1 GROUP by sub_marks.Subject_id";
+  
+  $res_marks = $conn->query($q_marks);
+  print_r($res_marks);
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
-  </body>
-</html>
+  echo "<br>".$res_marks->num_rows;
+  while ($row=$res_marks->fetch_assoc()) 
+  {
+  	echo "<br>";
+  	print_r($row);
+  }
+
+  ?>

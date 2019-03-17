@@ -1,24 +1,5 @@
 <?php
-
 require("db.php");
-
-if(isset($_POST["submit"]))
-{
-	$course = $_POST["inputCourse"];
-	$batch = $_POST["inputBatch"];
-
-	$applicants="Select count(distinct student.RegisterNo) as si from placements, student where student.RegisterNo = placements.Studentid and  student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch;
-	$app_res=$conn->query($applicants);
-	$app_row=$app_res->fetch_assoc();
-
-	$selects="SELECT COUNT(student.RegisterNo) from student, placements p,company c where student.RegisterNo = p.Studentid and p.rounds_qualified=c.No_of_rounds_conducted and p.companyid = c.idCompany and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch;
-	$sel_res=$conn->query($selects);
-	$sel_row=$sel_res->fetch_assoc();
-
-
-}
-// ------------------------FOR STATISTICS-------------------------
-
 ?>
 
 <!DOCTYPE html>
@@ -34,51 +15,51 @@ if(isset($_POST["submit"]))
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 	<style type="text/css">
-	.sticky-offset
-	{
-		top: 56px;
-	}
+		.sticky-offset
+		{
+			top: 56px;
+		}
 
-	.nav-item
-	{
-		color: #5CB85C
-	}
-	.modal-dialog-e
-	{
-		position: relative;
-		display: table; 
-		/*overflow-y: auto;    */
-		overflow-x: auto;
-		width: auto;
-		min-width: 300px;   
-		overflow-y: initial !important
-	}
-	.modal-body-e
-	{
-		height: 450px;
-		overflow-y: auto;
-	}
-</style>
+		.nav-item
+		{
+			color: #5CB85C
+		}
+		.modal-dialog-e
+		{
+			position: relative;
+			display: table; 
+			/*overflow-y: auto;    */
+			overflow-x: auto;
+			width: auto;
+			min-width: 300px;   
+			overflow-y: initial !important
+		}
+		.modal-body-e
+		{
+			height: 450px;
+			overflow-y: auto;
+		}
+	</style>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#searchField1").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#searchField1").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables1 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
 
-	$(document).ready(function(){
-		$("#searchField2").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		$(document).ready(function(){
+			$("#searchField2").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables2 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
-</script>
+	</script>
 </head>
 
 <body>
@@ -130,103 +111,117 @@ if(isset($_POST["submit"]))
 						<button class="btn btn-outline-success my-2 my-sm-0" type="Submit" name="submit">Submit</button>
 					</form>
 				</nav>
+				<?php
+				if(isset($_POST["submit"]))
+				{
+					$course = $_POST["inputCourse"];
+					$batch = $_POST["inputBatch"];
 
-				<div class="row w-100 m-0" style="padding-top: 75px;">
-					<div class="col-7 p-4">
-						<div class="card-deck">
-							<!-- -------------------------------------------CARD 1---------------------------------------------------->
-							<!-- pie chart for card 1 -->
-							<?php
-							if(isset($_POST["submit"]))
-							{
-								$que = "SELECT company.CompanyName, COUNT(student.RegisterNo) from company, placements,student where student.RegisterNo = placements.Studentid and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch." and placements.rounds_qualified = company.No_of_rounds_conducted and placements.companyid =company.idCompany GROUP by company.CompanyName";
-								$res5 = $conn->query($que);
-							}
-							?>
-							<script type="text/javascript">
-								google.charts.load('current', {'packages':['corechart']});
-								google.charts.setOnLoadCallback(drawChart);
+					if($course == 1)
+					{
+						$applicants="Select count(distinct student.RegisterNo) as si from placements, student where student.RegisterNo = placements.Studentid and  student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch;
+						$app_res=$conn->query($applicants);
+						$app_row=$app_res->fetch_assoc();
 
-								function drawChart() {
+						$selects="SELECT COUNT(student.RegisterNo) from student, placements p,company c where student.RegisterNo = p.Studentid and p.rounds_qualified=c.No_of_rounds_conducted and p.companyid = c.idCompany and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch;
+						$sel_res=$conn->query($selects);
+						$sel_row=$sel_res->fetch_assoc();
+// ------------------------FOR STATISTICS-------------------------
 
-									var data = google.visualization.arrayToDataTable([
-										['Company', 'Selected Candidates'],
-										<?php
-										while($row=$res5->fetch_assoc())
-										{
-											echo "['".$row["CompanyName"]."',".$row["COUNT(student.RegisterNo)"]."],";
+				?>
+						<div class="row w-100 m-0" style="padding-top: 75px;">
+							<div class="col-7 p-4">
+								<div class="card-deck">
+									<!-- -------------------------------------------CARD 1---------------------------------------------------->
+									<!-- pie chart for card 1 -->
+									<?php
+										$que = "SELECT company.CompanyName, COUNT(student.RegisterNo) from company, placements,student where student.RegisterNo = placements.Studentid and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch." and placements.rounds_qualified = company.No_of_rounds_conducted and placements.companyid =company.idCompany GROUP by company.CompanyName";
+										$res5 = $conn->query($que);
+									?>
+									<script type="text/javascript">
+										google.charts.load('current', {'packages':['corechart']});
+										google.charts.setOnLoadCallback(drawChart);
+
+										function drawChart() {
+
+											var data = google.visualization.arrayToDataTable([
+												['Company', 'Selected Candidates'],
+												<?php
+												while($row=$res5->fetch_assoc())
+												{
+													echo "['".$row["CompanyName"]."',".$row["COUNT(student.RegisterNo)"]."],";
+												}
+												?>
+												]);
+
+											var options = {
+												title: 'Selected Candidates'
+											};
+
+											var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+											chart.draw(data, options);
 										}
-										?>
-										]);
+									</script>
 
-									var options = {
-										title: 'Selected Candidates'
-									};
-
-									var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-									chart.draw(data, options);
-								}
-							</script>
-
-							<?php
+									<?php
 				// ----------FOR TABLE1-------
-							$list="SELECT student.RegisterNo,concat(student.FirstName,' ',student.LastName) as Name,company.CompanyName,company.Role,company.CTC_or_Stipend FROM placements, company, student where student.RegisterNo = placements.Studentid and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch." and placements.rounds_qualified = company.No_of_rounds_conducted and placements.companyid = company.idCompany and placements.Studentid = student.RegisterNo";
-							$res=$conn->query($list);
-							?>
-							<div class="card shadow-lg bg-white rounded">
-								<h5 class="card-header">Students - Placed</h5>
-								<div class="card-body">
-									<div id="piechart"></div>
-									<p class="card-text">Report containing details of students who have been placed.</p>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".placed_students_table">View</button>
-									<div class="modal fade placed_students_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
-										<div class="modal-dialog modal-lg" style="max-width:1000px;">
-											<div class="modal-content">
-												<div class="modal-header bg-info">
-													<h5 class="modal-title">List of Placed Students</h5>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body modal-body-e">
-													<input class="form-control ml-3 mt-3" id="searchField1" type="text" placeholder="Search.." style="width:50%;"/>
-													<br>
+									$list="SELECT student.RegisterNo,concat(student.FirstName,' ',student.LastName) as Name,company.CompanyName,company.Role,company.CTC_or_Stipend FROM placements, company, student where student.RegisterNo = placements.Studentid and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch." and placements.rounds_qualified = company.No_of_rounds_conducted and placements.companyid = company.idCompany and placements.Studentid = student.RegisterNo";
+									$res=$conn->query($list);
+									?>
+									<div class="card shadow-lg bg-white rounded">
+										<h5 class="card-header">Students - Placed</h5>
+										<div class="card-body">
+											<div id="piechart"></div>
+											<p class="card-text">Report containing details of students who have been placed.</p>
+											<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".placed_students_table">View</button>
+											<div class="modal fade placed_students_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
+												<div class="modal-dialog modal-lg" style="max-width:1000px;">
+													<div class="modal-content">
+														<div class="modal-header bg-info">
+															<h5 class="modal-title">List of Placed Students</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body modal-body-e">
+															<input class="form-control ml-3 mt-3" id="searchField1" type="text" placeholder="Search.." style="width:50%;"/>
+															<br>
 
 
-													<!-- if($i>0) -->
-													<!-- { -->
+															<!-- if($i>0) -->
+															<!-- { -->
 
 
-													<table class="table table-hover m-2" style="max-width:1100px;">
-														<thead>
-															<tr>
-																<th scope="col">#</th>
-																<th scope="col">Register Number</th>
-																<th scope="col">Name</th> 
-																<th scope="col">Company Name</th>
-																<th scope="col">Role Offered</th>
-																<th scope="col">CTC/Stipend</th>
-															</tr>
-														</thead>
+															<table class="table table-hover m-2" style="max-width:1100px;">
+																<thead>
+																	<tr>
+																		<th scope="col">#</th>
+																		<th scope="col">Register Number</th>
+																		<th scope="col">Name</th> 
+																		<th scope="col">Company Name</th>
+																		<th scope="col">Role Offered</th>
+																		<th scope="col">CTC/Stipend</th>
+																	</tr>
+																</thead>
 
-														<?php 
-														$k=0;
-														while($row=$res->fetch_assoc())
-														{
-															?>
-															<tbody id="reportTables">
-																<tr>
-																	<th scope="row"><?php echo($k+1) ?></th>
-																	<td><?php echo $row["RegisterNo"]?></td>
-																	<td><?php echo $row["Name"]?></td>
-																	<td><?php echo $row["CompanyName"]?></td>
-																	<td><?php echo $row["Role"]?></td>
-																	<td><?php echo $row["CTC_or_Stipend"]?></td>
-																</tr>
-															</tbody>
-															<?php
-															$k=$k+1;
+																<?php 
+																$k=0;
+																while($row=$res->fetch_assoc())
+																{
+																	?>
+																	<tbody id="reportTables1">
+																		<tr>
+																			<th scope="row"><?php echo($k+1) ?></th>
+																			<td><?php echo $row["RegisterNo"]?></td>
+																			<td><?php echo $row["Name"]?></td>
+																			<td><?php echo $row["CompanyName"]?></td>
+																			<td><?php echo $row["Role"]?></td>
+																			<td><?php echo $row["CTC_or_Stipend"]?></td>
+																		</tr>
+																	</tbody>
+																	<?php
+																	$k=$k+1;
 											}//while
 											?>
 										</table>	
@@ -333,7 +328,7 @@ if(isset($_POST["submit"]))
 												while($k<$i)
 												{
 													?>
-													<tbody id="reportTables">
+													<tbody id="reportTables2">
 														<tr>
 															<th scope="row"><?php echo($k+1) ?></th>
 															<td><?php echo $rate[$k][0] ?></td>
@@ -584,6 +579,14 @@ if(isset($_POST["submit"]))
 			</div>
 		</div>
 	</div>
+	<?php
+	} //course
+	else
+	{
+		include 'modal_unsuccess_reports.html';
+	}
+} //isset
+?>
 </div>
 
 </body>

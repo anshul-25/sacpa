@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2019 at 06:39 AM
+-- Generation Time: Mar 13, 2019 at 07:40 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -39725,7 +39725,8 @@ CREATE TABLE `credit_course` (
 
 INSERT INTO `credit_course` (`idCredit_Course`, `Studentid`, `Name`, `Credits`, `TotalMarks`, `MarksObtained`, `HoursConducted`, `HoursAttended`) VALUES
 (1, 1641011, 'CAPS', 2, 100, 90, 100, 90),
-(2, 1641060, 'CAPS', 2, 100, 90, 100, 80);
+(2, 1641060, 'CAPS', 2, 100, 90, 100, 80),
+(11, 1641035, 'E-commerce', 2, 100, 80, 30, 27);
 
 -- --------------------------------------------------------
 
@@ -39822,6 +39823,14 @@ CREATE TABLE `internships` (
   `EndDate` date DEFAULT NULL,
   `Role` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `internships`
+--
+
+INSERT INTO `internships` (`idInternships`, `StudentID`, `CompanyID`, `WorkDescription`, `StartDate`, `EndDate`, `Role`) VALUES
+(1, 1641011, 4, 'Software Development Trainee', '2017-05-02', '2017-05-25', 'Trainee'),
+(2, 1641020, 5, 'Software Development Trainee', '2018-04-17', '2018-06-17', 'Trainee');
 
 -- --------------------------------------------------------
 
@@ -44875,7 +44884,7 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `credit_course`
 --
 ALTER TABLE `credit_course`
-  MODIFY `idCredit_Course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCredit_Course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `deneary`
@@ -44893,7 +44902,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `internships`
 --
 ALTER TABLE `internships`
-  MODIFY `idInternships` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idInternships` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `managed_events`

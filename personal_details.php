@@ -161,7 +161,7 @@ if(isset($_POST["submit"]))
             </select>
           </div>
            <div class="form-group col-md-3">
-            <select class="form-control" name="inputState"  id="inputState" onchange="getCity(this.value,'#inputCity')" required>
+            <select class="form-control" name="inputState"  id="inputState" onchange="getCity(this.value,'#inputCity')">
               <option selected disabled>Please select state</option>
             </select>
           </div>

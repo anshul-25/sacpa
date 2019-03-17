@@ -5,121 +5,126 @@ require ("db.php");
 if(isset($_POST["submit"]))
 {
 	$register = $_POST["inputRegisterNo"];
-	$name = "Select FirstName, LastName, EmailIdPersonal from student where RegisterNo = ".$register;
-	$activity = "Select a.Name,a.Role,at.Type_Name from activity a, activity_type at where a.Type = at.idActivity_type and Studentid =".$register;
-	$class10 = "Select Stream, Board, Total_Marks, Marks_obt from class10 where studentid =".$register;
-	$class12 = "Select Stream, Board, Total_marks, Marks_Obt from class12 where Studentid =".$register;
-	$clubs = "Select Name,Role from clubs_organisations where Studentid =".$register;
-	$cc = "Select Name,Credits, TotalMarks, MarksObtained from credit_course where Studentid =".$register;
-	$internships = "Select c.CompanyName, i.Role from company c, internships i where i.CompanyID = c.idCompany and StudentID =".$register;
-	$mevents = "Select Name, Role from managed_events where Studentid =".$register;
-	$pevents = "Select name,position,location from participated_events where StudentId =".$register;
-	$prog = "Select p.Course_Name from student s, programme p where s.ProgrammeID = p.idCourse and s.RegisterNo =".$register;
-	$placement = "Select * from placements where Studentid =".$register;
-
-	//name
-	$res = $conn->query($name); 
-	$row=$res->fetch_assoc(); 
-	$name2 = $row["FirstName"]." ".$row["LastName"];
-	$email=$row["EmailIdPersonal"];
-
-	//class10
-	$res = $conn->query($class10); 
-	$row=$res->fetch_assoc(); 
-	$c[0] = $row["Stream"];
-	$c[1] = $row["Board"];
-	$c[3] = ($row["Marks_obt"]/$row["Total_Marks"])*100;
-
-	//class12
-	$res = $conn->query($class12); 
-	$row=$res->fetch_assoc(); 
-	$c2[0] = $row["Stream"];
-	$c2[1] = $row["Board"];
-	$c2[3] = ($row["Marks_Obt"]/$row["Total_marks"])*100;
-
-	//course
-	$res=$conn->query($prog);
-	$row = $res->fetch_assoc();
-	$course=$row["Course_Name"];
-
-	//activity
-	$i=0;
-	$res=$conn->query($activity);
-	if($res->num_rows > 0)
+	$q="Select RegisterNo from student where RegisterNo=".$register;
+	$res2 = $conn->query($q);
+	if($res2->num_rows > 0)
 	{
-		while($row = $res->fetch_assoc())
+		$name = "Select FirstName, LastName, EmailIdPersonal from student where RegisterNo = ".$register;
+		$activity = "Select a.Name,a.Role,at.Type_Name from activity a, activity_type at where a.Type = at.idActivity_type and Studentid =".$register;
+		$class10 = "Select Stream, Board, Total_Marks, Marks_obt from class10 where studentid =".$register;
+		$class12 = "Select Stream, Board, Total_marks, Marks_Obt from class12 where Studentid =".$register;
+		$clubs = "Select Name,Role from clubs_organisations where Studentid =".$register;
+		$cc = "Select Name,Credits, TotalMarks, MarksObtained from credit_course where Studentid =".$register;
+		$internships = "Select c.CompanyName, i.Role from company c, internships i where i.CompanyID = c.idCompany and StudentID =".$register;
+		$mevents = "Select Name, Role from managed_events where Studentid =".$register;
+		$pevents = "Select name,position,location from participated_events where StudentId =".$register;
+		$prog = "Select p.Course_Name from student s, programme p where s.ProgrammeID = p.idCourse and s.RegisterNo =".$register;
+		$placement = "Select * from placements where Studentid =".$register;
+
+		//name
+		$res = $conn->query($name); 
+		$row=$res->fetch_assoc(); 
+		$name2 = $row["FirstName"]." ".$row["LastName"];
+		$email=$row["EmailIdPersonal"];
+
+		//class10
+		$res = $conn->query($class10); 
+		$row=$res->fetch_assoc(); 
+		$c[0] = $row["Stream"];
+		$c[1] = $row["Board"];
+		$c[3] = ($row["Marks_obt"]/$row["Total_Marks"])*100;
+
+		//class12
+		$res = $conn->query($class12); 
+		$row=$res->fetch_assoc(); 
+		$c2[0] = $row["Stream"];
+		$c2[1] = $row["Board"];
+		$c2[3] = ($row["Marks_Obt"]/$row["Total_marks"])*100;
+
+		//course
+		$res=$conn->query($prog);
+		$row = $res->fetch_assoc();
+		$course=$row["Course_Name"];
+
+		//activity
+		$i=0;
+		$res=$conn->query($activity);
+		if($res->num_rows > 0)
 		{
-			$act[$i][0]=$row["Name"];
-			$act[$i][1]=$row["Role"];
-			$act[$i][2]=$row["Type_Name"];
-			$i=$i+1;
+			while($row = $res->fetch_assoc())
+			{
+				$act[$i][0]=$row["Name"];
+				$act[$i][1]=$row["Role"];
+				$act[$i][2]=$row["Type_Name"];
+				$i=$i+1;
+			}
 		}
-	}
 
-	//clubs
-	$j=0;
-	$res=$conn->query($clubs);
-	if($res->num_rows > 0)
-	{
-		while($row = $res->fetch_assoc())
+		//clubs
+		$j=0;
+		$res=$conn->query($clubs);
+		if($res->num_rows > 0)
 		{
-			$cl[$j][0]=$row["Name"];
-			$cl[$j][1]=$row["Role"];
-			$j=$j+1;
+			while($row = $res->fetch_assoc())
+			{
+				$cl[$j][0]=$row["Name"];
+				$cl[$j][1]=$row["Role"];
+				$j=$j+1;
+			}
 		}
-	}
 
-	//cc
-	$l=0;
-	$res=$conn->query($cc);
-	if($res->num_rows > 0)
-	{
-		while($row = $res->fetch_assoc())
+		//cc
+		$l=0;
+		$res=$conn->query($cc);
+		if($res->num_rows > 0)
 		{
-			$cc1[$l][0]=$row["Name"];
-			$cc1[$l][1]=$row["Credits"];
-			$cc1[$l][2]=($row["MarksObtained"]/$row["TotalMarks"])*100;
-			$l=$l+1;
+			while($row = $res->fetch_assoc())
+			{
+				$cc1[$l][0]=$row["Name"];
+				$cc1[$l][1]=$row["Credits"];
+				$cc1[$l][2]=($row["MarksObtained"]/$row["TotalMarks"])*100;
+				$l=$l+1;
+			}
 		}
-	}
 
-	//internships
-	$m=0;
-	$res=$conn->query($internships);
-	if($res->num_rows > 0)
-	{
-		while($row = $res->fetch_assoc())
+		//internships
+		$m=0;
+		$res=$conn->query($internships);
+		if($res->num_rows > 0)
 		{
-			$in[$m][0]=$row["CompanyName"];
-			$in[$m][1]=$row["Role"];
-			$m=$m+1;
+			while($row = $res->fetch_assoc())
+			{
+				$in[$m][0]=$row["CompanyName"];
+				$in[$m][1]=$row["Role"];
+				$m=$m+1;
+			}
 		}
-	}
 
-	//managed events
-	$n=0;
-	$res=$conn->query($mevents);
-	if($res->num_rows > 0)
-	{
-		while($row = $res->fetch_assoc())
+		//managed events
+		$n=0;
+		$res=$conn->query($mevents);
+		if($res->num_rows > 0)
 		{
-			$me[$n][0]=$row["Name"];
-			$me[$n][1]=$row["Role"];
-			$n=$n+1;
+			while($row = $res->fetch_assoc())
+			{
+				$me[$n][0]=$row["Name"];
+				$me[$n][1]=$row["Role"];
+				$n=$n+1;
+			}
 		}
-	}
 
-	//participated events
-	$o=0;
-	$res=$conn->query($pevents);
-	if($res->num_rows > 0)
-	{
-		while($row = $res->fetch_assoc())
+		//participated events
+		$o=0;
+		$res=$conn->query($pevents);
+		if($res->num_rows > 0)
 		{
-			$pe[$o][0]=$row["name"];
-			$pe[$o][1]=$row["position"];
-			$pe[$o][2]=$row["location"];
-			$o=$o+1;
+			while($row = $res->fetch_assoc())
+			{
+				$pe[$o][0]=$row["name"];
+				$pe[$o][1]=$row["position"];
+				$pe[$o][2]=$row["location"];
+				$o=$o+1;
+			}
 		}
 	}
 }
@@ -233,6 +238,19 @@ if(isset($_POST["submit"]))
 		<?php
 		if(isset($_POST["submit"]))
 		{
+			$q="Select RegisterNo from student where RegisterNo=".$register;
+
+			$q1="select student.RegisterNo, sum(sub_marks.CIA1_Obt+sub_marks.CIA2_Obt+sub_marks.CIA3_Obt+sub_marks.EndSem_Obt+sub_marks.Atten_Obt) as obt, sum(subjects.CIA1_Max+subjects.CIA2_Max+subjects.CIA3_Max+subjects.EndSem_Max+subjects.Attendance_Max) as total FROM sub_marks, subjects, student where sub_marks.Student_id=student.RegisterNo and sub_marks.Subject_id=subjects.idSubjects and student.RegisterNo=".$register;
+			$res_q1=$conn->query($q1);
+			$row_q1=$res_q1->fetch_assoc();
+
+			$q2="SELECT student.RegisterNo, sum(sub_marks.Hours_Attended)/sum(subjects.Max_Hours) as att from sub_marks,subjects,student where student.RegisterNo=sub_marks.Student_id and sub_marks.Subject_id=subjects.idSubjects and student.RegisterNo =".$register;
+			$res_q2=$conn->query($q2);
+			$row_q2=$res_q2->fetch_assoc();
+
+			$res2 = $conn->query($q);
+			if($res2->num_rows > 0)
+			{
 		// ------------------------SIDE PROFILE--------------------------
 		echo "
 		<div id=\"maincontainer\" class=\"container-fluid row w-100 px-0 m-0\" style=\"padding-top: 75px;\">
@@ -243,6 +261,9 @@ if(isset($_POST["submit"]))
 					<h3>".$name2."</h3>
 					<p class=\"title\">".$register."</p>
 					<p>".$course."</p>
+					
+					<p>Marks: <strong>".round((($row_q1["obt"]/$row_q1["total"])*100),2)."%</strong></p>
+					<p>Attendance: <strong>".($row_q2["att"]*100)."%</strong></p>
 					<p>".$email."</p>
 				</div>
 			</div>";
@@ -563,6 +584,11 @@ if(isset($_POST["submit"]))
 		</div>
 	</div>";
 	}
+	else
+	{
+		include 'modal_unsuccess_reports.html';
+	}
+}
 	?>
 </div>
 </body>

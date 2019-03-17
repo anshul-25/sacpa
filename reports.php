@@ -1,27 +1,5 @@
 <?php 
 require("db.php");
-
-if (isset($_POST["submit"])) 
-{
-	$batch = $_POST["inputBatch"];
-	$course = $_POST["inputCourse"];
-
-	//--------------------------------------------------
-
-	$male = "Select count(title) from student where title = 'Mr'";
-	$female = "Select count(title) from student where title = 'Ms' or title = 'Mrs'";
-	$other = "Select count(title) from student where title ='None'";
-
-	$res = $conn->query($male);
-	$m = $res->fetch_assoc();
-
-	$res = $conn->query($female);
-	$f = $res->fetch_assoc();
-
-	$res = $conn->query($other);
-	$o = $res->fetch_assoc();
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -37,93 +15,94 @@ if (isset($_POST["submit"]))
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
 	<style type="text/css">
-	.sticky-offset
-	{
-		top: 56px;
-	}
+		.sticky-offset
+		{
+			top: 56px;
+		}
 
-	.nav-item
-	{
-		color: #5CB85C
-	}
+		.nav-item
+		{
+			color: #5CB85C
+		}
 
-	.modal-dialog
-	{
-		position: relative;
-		display: table; /* This is important */ 
-		/*overflow-y: auto;    */
-		overflow-x: auto;
-		width: auto;
-		min-width: 300px;   
-		overflow-y: initial !important
-	}
-	.modal-body
-	{
-		height: 450px;
-		overflow-y: auto;
-	}
-</style>
+		.modal-dialog
+		{
+			position: relative;
+			display: table; /* This is important */ 
+			/*overflow-y: auto;    */
+			overflow-x: auto;
+			width: auto;
+			min-width: 300px;   
+			overflow-y: initial !important
+		}
+		.modal-body
+		{
+			height: 450px;
+			overflow-y: auto;
+		}
+	</style>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#searchField1").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables1 tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#searchField1").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables1 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
-	$(document).ready(function(){
-		$("#searchField2").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables2 tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		$(document).ready(function(){
+			$("#searchField2").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables2 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
-	$(document).ready(function(){
-		$("#searchField3").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables3 tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		$(document).ready(function(){
+			$("#searchField3").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables3 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
-	$(document).ready(function(){
-		$("#searchField4").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables4 tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		$(document).ready(function(){
+			$("#searchField4").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables4 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
-	$(document).ready(function(){
-		$("#searchField5").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables5 tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		$(document).ready(function(){
+			$("#searchField5").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables5 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
-	$(document).ready(function(){
-		$("#searchField6").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables6 tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		$(document).ready(function(){
+			$("#searchField6").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables6 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
-	$(document).ready(function(){
-		$("#searchField7").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			$("#reportTables7 tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		$(document).ready(function(){
+			$("#searchField7").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#reportTables7 tr").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			});
 		});
-	});
 
-</script>
+	</script>
 </head>
+
 
 <body>
 	<div class="container-fluid row m-0 p-0" style="overflow-x: hidden;">
@@ -176,56 +155,74 @@ if (isset($_POST["submit"]))
 			</nav>
 
 			<?php
-			if (isset($_POST["submit"]))
+			if (isset($_POST["submit"])) 
 			{
-				?>
+				$batch = $_POST["inputBatch"];
+				$course = $_POST["inputCourse"];
 
-				<div class="row w-100 m-5" style="padding-top: 75px; text-align: center;" >
-					<!-- ---------------------------------FOR FIRST CARD------------------------------------------------- -->
+	//--------------------------------------------------
 
-					<script type="text/javascript">
-						google.charts.load('current', {'packages':['corechart']});
-						google.charts.setOnLoadCallback(drawChart);
+				if($course == 1)
+				{
+					$male = "Select count(title) from student where title = 'Mr'";
+					$female = "Select count(title) from student where title = 'Ms' or title = 'Mrs'";
+					$other = "Select count(title) from student where title ='None'";
 
-						function drawChart() {
+					$res = $conn->query($male);
+					$m = $res->fetch_assoc();
 
-							var data = google.visualization.arrayToDataTable([
-								['Gender', 'No of students'],
-								['Male', <?php echo $m["count(title)"]; ?>],
-								['Female', <?php echo $f["count(title)"]; ?>],
-								['Other', <?php echo $o["count(title)"]; ?>]
-								]);
+					$res = $conn->query($female);
+					$f = $res->fetch_assoc();
 
-							var options = {
-								'legend.position': 'top',
-								'legend.alignment':'center'
-							};
+					$res = $conn->query($other);
+					$o = $res->fetch_assoc();
+			?>
+					<div class="row w-100 m-5" style="padding-top: 75px; text-align: center;" >
+						<!-- ---------------------------------FOR FIRST CARD------------------------------------------------- -->
 
-							var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+						<script type="text/javascript">
+							google.charts.load('current', {'packages':['corechart']});
+							google.charts.setOnLoadCallback(drawChart);
 
-							chart.draw(data, options);
-						}
-					</script>
+							function drawChart() {
 
-					<?php
-					$course = $_POST["inputCourse"];
-					$studInfo = "select RegisterNo, FirstName, LastName, PhoneNo, EmailIdPersonal, ReservationCategory, Year_of_Admission from student s where s.ProgrammeID =" .$course." and s.Year_of_Admission =".$batch;
+								var data = google.visualization.arrayToDataTable([
+									['Gender', 'No of students'],
+									['Male', <?php echo $m["count(title)"]; ?>],
+									['Female', <?php echo $f["count(title)"]; ?>],
+									['Other', <?php echo $o["count(title)"]; ?>]
+									]);
 
-					$i = 0;
-					$res = $conn->query($studInfo);
-					if($res->num_rows > 0)
-					{
-						while ($row = $res->fetch_assoc()) 
+								var options = {
+									'legend.position': 'top',
+									'legend.alignment':'center'
+								};
+
+								var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+								chart.draw(data, options);
+							}
+						</script>
+
+						<?php
+						$course = $_POST["inputCourse"];
+						$studInfo = "select RegisterNo, FirstName, LastName, PhoneNo, EmailIdPersonal, ReservationCategory, Year_of_Admission from student s where s.ProgrammeID =" .$course." and s.Year_of_Admission =".$batch;
+
+						$i = 0;
+						$res = $conn->query($studInfo);
+						if($res->num_rows > 0)
 						{
-							$studentInfo_array[$i][0] = $row["RegisterNo"];
-							$studentInfo_array[$i][1] = $row["FirstName"];
-							$studentInfo_array[$i][2] = $row["LastName"];
-							$studentInfo_array[$i][3] = $row["PhoneNo"];
-							$studentInfo_array[$i][4] = $row["EmailIdPersonal"];
-							$studentInfo_array[$i][5] = $row["ReservationCategory"];
-							$studentInfo_array[$i][6] = $row["Year_of_Admission"];
-							$i=$i+1;
-						}
+							while ($row = $res->fetch_assoc()) 
+							{
+								$studentInfo_array[$i][0] = $row["RegisterNo"];
+								$studentInfo_array[$i][1] = $row["FirstName"];
+								$studentInfo_array[$i][2] = $row["LastName"];
+								$studentInfo_array[$i][3] = $row["PhoneNo"];
+								$studentInfo_array[$i][4] = $row["EmailIdPersonal"];
+								$studentInfo_array[$i][5] = $row["ReservationCategory"];
+								$studentInfo_array[$i][6] = $row["Year_of_Admission"];
+								$i=$i+1;
+							}
 						} //if
 
 						?>
@@ -420,7 +417,7 @@ if (isset($_POST["submit"]))
 				<h5 class="card-header">Academics Report</h5>
 				<div class="card-body">
 					<div id="curve_chart"></div>
-					<p class="card-text"><br>Report containing the Academic details of all the students of a particular course</p>
+					<p class="card-text"><br>Consolidated academic report for all students of a particular course</p>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".studentAcademicInfoTable">View</button>
 					<div class="modal fade studentAcademicInfoTable" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 						<div class="modal-dialog modal-lg" style="max-width:1400px;">
@@ -617,7 +614,7 @@ while($row=$res->fetch_assoc())
 			<h5 class="card-header">Attendance Report</h5>
 			<div class="card-body">
 				<div id="curve_chart2"></div>
-				<p class="card-text"><br>Report containing the Attendance details of all the students of a particular course</p>
+				<p class="card-text"><br>Consolidated attendance report for all students of a particular course</p>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".studentAttendanceInfoTable">View</button>
 				<div class="modal fade studentAttendanceInfoTable" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width:1400px;">
@@ -828,7 +825,7 @@ while($row=$res->fetch_assoc())
 					legend: 'none',
 					trendlines: { 0: {} },
 					// width: 900,
-					height: 323
+					height: 348
 				};
 
 				var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
@@ -953,7 +950,7 @@ while($row=$res->fetch_assoc())
 			<h5 class="card-header">Demographic Distribution - Academics</h5>
 			<div class="card-body">
 				<div id="country_marks_pie"></div>
-				<p class="card-text">demographic distribution of marks.</p>
+				<p class="card-text">Students' academic analysis on demographic data</p>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".geo_modal2">View</button>
 
 				<div class="modal fade geo_modal2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
@@ -1154,7 +1151,7 @@ while($row=$res->fetch_assoc())
 			<div class="card-body">
 				<div id="columnchart_material2"></div>
 				<br>
-				<p class="card-text">Graph representing attendance statistics of all students.</p>
+				<p class="card-text">Graph representing co-curricular statistics of all students.</p>
 			</div>
 		</div>
 	</div>
@@ -1213,16 +1210,16 @@ while($row=$res->fetch_assoc())
 	</script>
 	<div class="col-4">
 		<div class="card shadow-lg bg-white rounded">
-			<h5 class="card-header">Personal Information Report</h5>
+			<h5 class="card-header">Project/Research Report</h5>
 			<div class="card-body">
 				<div id="columnchart_values"></div>
-				<p class="card-text">Report containing the personal details of all the students of a particular course</p>
+				<p class="card-text">Report containing the academic activity details of all the students of a particular course</p>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".activity_table">View</button>
 				<div class="modal fade activity_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 						<div class="modal-content">
 							<div class="modal-header bg-info">
-								<h5 class="modal-title">Personal Information Report</h5>
+								<h5 class="modal-title">Project/Research Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1343,16 +1340,16 @@ while($row=$res->fetch_assoc())
 
 	<div class="col-4">
 		<div class="card shadow-lg bg-white rounded">
-			<h5 class="card-header">Personal Information Report</h5>
+			<h5 class="card-header">Organisations/Clubs Report</h5>
 			<div class="card-body">
 				<div id="columnchart_values1"></div>
-				<p class="card-text">Report containing the personal details of all the students of a particular course</p>
+				<p class="card-text">Report containing the count of students in each organisations or clubs for a particular course</p>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".clubs_table">View</button>
 				<div class="modal fade clubs_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 						<div class="modal-content">
 							<div class="modal-header bg-info">
-								<h5 class="modal-title">Personal Information Report</h5>
+								<h5 class="modal-title">Organisations/Clubs Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1474,16 +1471,16 @@ while($row=$res->fetch_assoc())
 	</script>
 	<div class="col-4">
 		<div class="card shadow-lg bg-white rounded">
-			<h5 class="card-header">Personal Information Report</h5>
+			<h5 class="card-header">Credit Course Report</h5>
 			<div class="card-body">
 				<div id="columnchart_values2"></div>
-				<p class="card-text">Report containing the personal details of all the students of a particular course</p>
+				<p class="card-text">Report containing the credit course participation details of all the students of a particular course</p>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".cc_table">View</button>
 				<div class="modal fade cc_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 						<div class="modal-content">
 							<div class="modal-header bg-info">
-								<h5 class="modal-title">Personal Information Report</h5>
+								<h5 class="modal-title">Credit Course Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1595,16 +1592,16 @@ while($row=$res->fetch_assoc())
 	</script>
 	<div class="col-4">
 		<div class="card shadow-lg bg-white rounded">
-			<h5 class="card-header">Personal Information Report</h5>
+			<h5 class="card-header">Internship Report</h5>
 			<div class="card-body">
 				<div id="columnchart_values3"></div>
-				<p class="card-text">Report containing the personal details of all the students of a particular course</p>
+				<p class="card-text">Report containing the internship details of all the students of a particular course</p>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".interns_table">View</button>
 				<div class="modal fade interns_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 						<div class="modal-content">
 							<div class="modal-header bg-info">
-								<h5 class="modal-title">Personal Information Report</h5>
+								<h5 class="modal-title">Internship Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1666,6 +1663,11 @@ while($row=$res->fetch_assoc())
 	</div>
 </div> <!-- 6th row-->
 <?php
+}
+else
+{
+	include 'modal_unsuccess_reports.html';
+}
 } #if (isset($_POST["submit"]))
 ?>
 </div> 

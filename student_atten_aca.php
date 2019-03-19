@@ -2,59 +2,39 @@
 
 require("db.php");
 
-$q1 = "Select RegisterNo from student";
-$register = $conn->query($q1);
+$q1x = "select DISTINCT sub_marks.Student_id from sub_marks";
+$registerx = $conn->query($q1x);
 
-if($register->num_rows > 0)
+if($registerx->num_rows > 0)
 {
-	$b=0;
-	while ($row = $register->fetch_assoc())
+	$bx=0;
+	while ($rowx = $registerx->fetch_assoc())
 	{
-		$q2= "Select * from sub_marks where Student_id=".$row["RegisterNo"];
-		$submarks = $conn->query($q2);
-		$num = $submarks->num_rows;
-		if($num > 0)
+		$q2x = "select (sum(sub_marks.CIA1_Obt+sub_marks.CIA2_Obt+sub_marks.CIA3_Obt+sub_marks.EndSem_Obt+sub_marks.Atten_Obt)/sum(subjects.CIA1_Max+subjects.CIA2_Max+subjects.CIA3_Max+subjects.EndSem_Max+subjects.Attendance_Max)) as avrg, (sub_marks.Hours_Attended/subjects.Max_hours) as att from sub_marks, subjects where sub_marks.Subject_id=subjects.idSubjects and sub_marks.Student_id=".$rowx["Student_id"]." GROUP BY sub_marks.Subject_id";
+		$res2x = $conn->query($q2x);
+		while($row1x = $res2x->fetch_assoc())
 		{
-			$a=0;
-			while($row1 = $submarks->fetch_assoc())
-			{
-				$q3= "Select * from subjects where idSubjects = '".$row1["Subject_id"]."'";
-				$subjects=$conn->query($q3);
-		
-				if($subjects->num_rows > 0)
-				{
-					$row2=$subjects->fetch_assoc();
-					$total[$a] = $row2["CIA1_Max"]+$row2["CIA2_Max"]+$row2["CIA3_Max"]+$row2["EndSem_Max"]+$row2["Attendance_Max"];
-					$obtained[$a] = $row1["CIA1_Obt"]+$row1["CIA2_Obt"]+$row1["CIA3_Obt"]+$row1["EndSem_Obt"]+$row1["Atten_Obt"];
-
-					$per[$b]=round(($obtained[$a]/$total[$a]),2);
-					$att[$b]=round(($row1["Hours_Attended"]/$row2["Max_Hours"]),2);
-					$a=$a+1;
-					$b=$b+1;
-				}//each subject ends here
-
-			}//all subjects for each student ends here
+			$perx[$bx]=round($row1x["avrg"],2);
+			$attx[$bx]=round($row1x["att"],2);
+			$bx=$bx+1;
 		}
-		else
-		{
-			//echo "No academic entries found!";
-		}
-	}//each register no end
+	
+	}//each reg no. ends here
 
-	$z=0;
-	while($z < $b)
+	$zx=0;
+	while($zx < $bx)
 	{
-		$list[$z] = $per[$z].",".$att[$z];
-		echo $list[$z]."<br>";
-		$z=$z+1;
+		$listx[$zx] = ($attx[$zx]*100).",".($perx[$zx]*100);
+		//echo $list[$z]."<br>";
+		$zx=$zx+1;
 	}
 
 	//inserting data into a csv file
 	$csvfile = 'studentdata_att_aca_db.csv';
-	$header=array("Marks","Attendance");
+	//$header=array("Marks","Attendance");
 	$file = fopen($csvfile,"w");
-	fputcsv($file, $header);
-	foreach ($list as $line) 
+	//fputcsv($file, $header);
+	foreach ($listx as $line) 
 	{
 		fputcsv($file, explode(',', $line));
 	}

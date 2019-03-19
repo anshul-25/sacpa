@@ -1,5 +1,6 @@
 <?php 
 require("db.php");
+require ("student_atten_aca.php");
 ?>
 
 <!DOCTYPE html>
@@ -15,92 +16,92 @@ require("db.php");
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
 	<style type="text/css">
-		.sticky-offset
-		{
-			top: 56px;
-		}
+	.sticky-offset
+	{
+		top: 56px;
+	}
 
-		.nav-item
-		{
-			color: #5CB85C
-		}
+	.nav-item
+	{
+		color: #5CB85C
+	}
 
-		.modal-dialog
-		{
-			position: relative;
-			display: table; /* This is important */ 
-			/*overflow-y: auto;    */
-			overflow-x: auto;
-			width: auto;
-			min-width: 300px;   
-			overflow-y: initial !important
-		}
-		.modal-body
-		{
-			height: 450px;
-			overflow-y: auto;
-		}
-	</style>
+	.modal-dialog
+	{
+		position: relative;
+		display: table; /* This is important */ 
+		/*overflow-y: auto;    */
+		overflow-x: auto;
+		width: auto;
+		min-width: 300px;   
+		overflow-y: initial !important
+	}
+	.modal-body
+	{
+		height: 450px;
+		overflow-y: auto;
+	}
+</style>
 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#searchField1").on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$("#reportTables1 tr").filter(function() {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#searchField1").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#reportTables1 tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
-		$(document).ready(function(){
-			$("#searchField2").on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$("#reportTables2 tr").filter(function() {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+	});
+	$(document).ready(function(){
+		$("#searchField2").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#reportTables2 tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
-		$(document).ready(function(){
-			$("#searchField3").on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$("#reportTables3 tr").filter(function() {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+	});
+	$(document).ready(function(){
+		$("#searchField3").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#reportTables3 tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
-		$(document).ready(function(){
-			$("#searchField4").on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$("#reportTables4 tr").filter(function() {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+	});
+	$(document).ready(function(){
+		$("#searchField4").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#reportTables4 tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
-		$(document).ready(function(){
-			$("#searchField5").on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$("#reportTables5 tr").filter(function() {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+	});
+	$(document).ready(function(){
+		$("#searchField5").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#reportTables5 tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
-		$(document).ready(function(){
-			$("#searchField6").on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$("#reportTables6 tr").filter(function() {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+	});
+	$(document).ready(function(){
+		$("#searchField6").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#reportTables6 tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
-		$(document).ready(function(){
-			$("#searchField7").on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$("#reportTables7 tr").filter(function() {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+	});
+	$(document).ready(function(){
+		$("#searchField7").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#reportTables7 tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
+	});
 
-	</script>
+</script>
 </head>
 
 
@@ -115,7 +116,6 @@ require("db.php");
 				</div>
 				<form class="form-inline" id="myform" action="#" method="POST">
 					<select class="form-control mr-2" name="inputCourse" id="inputCourse" required>
-						<!-- <option selected="true" disabled>Please select Programme</option> -->
 						<option value="">Please Select Programme</option>
 						<?php
 						$prog_sql="SELECT * FROM programme ORDER BY Course_Name ASC";
@@ -160,8 +160,6 @@ require("db.php");
 				$batch = $_POST["inputBatch"];
 				$course = $_POST["inputCourse"];
 
-	//--------------------------------------------------
-
 				if($course == 1)
 				{
 					$male = "Select count(title) from student where title = 'Mr'";
@@ -176,7 +174,7 @@ require("db.php");
 
 					$res = $conn->query($other);
 					$o = $res->fetch_assoc();
-			?>
+					?>
 					<div class="row w-100 m-5" style="padding-top: 75px; text-align: center;" >
 						<!-- ---------------------------------FOR FIRST CARD------------------------------------------------- -->
 
@@ -236,8 +234,8 @@ require("db.php");
 									<div class="modal fade studentPersonalInfoTable" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 										<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 											<div class="modal-content">
-												<div class="modal-header bg-info">
-													<h5 class="modal-title">Personal Information Report</h5>
+												<div class="modal-header" style="background-color: #73bf73;">
+													<h5 class="modal-title text-light ml-4">Personal Information Report</h5>
 													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 														<span aria-hidden="true">&times;</span>
 													</button>
@@ -414,16 +412,16 @@ require("db.php");
 		?>
 		<div class="col-8">
 			<div class="card shadow-lg bg-white rounded">
-				<h5 class="card-header">Academics Report</h5>
+				<h5 class="card-header">Consolidated Academics Report</h5>
 				<div class="card-body">
 					<div id="curve_chart"></div>
 					<p class="card-text"><br>Consolidated academic report for all students of a particular course</p>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".studentAcademicInfoTable">View</button>
 					<div class="modal fade studentAcademicInfoTable" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
-						<div class="modal-dialog modal-lg" style="max-width:1400px;">
+						<div class="modal-dialog modal-lg" style="max-width:1300px;">
 							<div class="modal-content">
-								<div class="modal-header bg-info">
-									<h5 class="modal-title">Academic Information Report</h5>
+								<div class="modal-header" style="background-color: #73bf73;">
+									<h5 class="modal-title text-light ml-4">Academic Information Report</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -437,7 +435,7 @@ require("db.php");
 									{
 										?>
 
-										<table class="table table-hover m-2" style="max-width:1400px;">
+										<table class="table table-hover m-2" style="max-width:1600px;">
 											<thead>
 												<tr>
 													<th scope="col">#</th>
@@ -450,6 +448,7 @@ require("db.php");
 													<th scope="col">Semester 5</th>
 													<th scope="col">Semester 6</th>
 													<th scope="col">Total</th>
+													<th scope="col" style="width: 10%;">Grade</th>
 												</tr>
 											</thead>
 
@@ -471,6 +470,24 @@ require("db.php");
 														<td><?php if (empty($academic_array[$k][6])) echo "NA"; else echo round($academic_array[$k][6],2) ?></td>
 														<td><?php if (empty($academic_array[$k][7])) echo "NA"; else echo round($academic_array[$k][7],2) ?></td>
 														<td><?php if ($average_percentage[$k]==0) echo "NA"; else echo round($average_percentage[$k],2) ?></td>
+														<td>
+															<?php
+															if($average_percentage[$k]>=80)
+																echo "First Class with Distinction";
+															else if($average_percentage[$k]>=60)
+																echo "First Class";
+															else if($average_percentage[$k]>=50)
+																echo "Second Class";
+															else if ($average_percentage[$k]>=40)
+																echo "Pass Class";
+															else if($average_percentage[$k]>0)
+																echo "Fail";
+															else
+																echo "NA";
+
+
+															?>
+														</td>
 													</tr>
 												</tbody>
 
@@ -611,7 +628,7 @@ while($row=$res->fetch_assoc())
 	<!-- ------------------------------3RD CARD----------------------------- -->
 	<div class="col-8">
 		<div class="card shadow-lg bg-white rounded">
-			<h5 class="card-header">Attendance Report</h5>
+			<h5 class="card-header">Consolidated Attendance Report</h5>
 			<div class="card-body">
 				<div id="curve_chart2"></div>
 				<p class="card-text"><br>Consolidated attendance report for all students of a particular course</p>
@@ -619,8 +636,8 @@ while($row=$res->fetch_assoc())
 				<div class="modal fade studentAttendanceInfoTable" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width:1400px;">
 						<div class="modal-content">
-							<div class="modal-header bg-info">
-								<h5 class="modal-title">Attendance Information Report</h5>
+							<div class="modal-header" style="background-color: #73bf73;">
+								<h5 class="modal-title text-light ml-4">Attendance Information Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -766,8 +783,8 @@ while($row=$res->fetch_assoc())
 			<div class="modal fade geo_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
-						<div class="modal-header bg-info">
-							<h5 class="modal-title">Demographic distribution</h5>
+						<div class="modal-header" style="background-color: #73bf73;">
+							<h5 class="modal-title text-light ml-4">Demographic distribution</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -801,7 +818,7 @@ while($row=$res->fetch_assoc())
 					<?php
 					$n=0;$i=0;
 					$csv = array();
-					$file = fopen('studentdata_att_aca.csv', 'r');
+					$file = fopen('studentdata_att_aca_db.csv', 'r');
 
 					while (($result = fgetcsv($file)) !== false)
 					{
@@ -956,8 +973,8 @@ while($row=$res->fetch_assoc())
 				<div class="modal fade geo_modal2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
-							<div class="modal-header bg-info">
-								<h5 class="modal-title">Demographic Distribution - Academics</h5>
+							<div class="modal-header" style="background-color: #73bf73;">
+								<h5 class="modal-title text-light ml-4">Demographic Distribution - Academics</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1218,8 +1235,8 @@ while($row=$res->fetch_assoc())
 				<div class="modal fade activity_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 						<div class="modal-content">
-							<div class="modal-header bg-info">
-								<h5 class="modal-title">Project/Research Report</h5>
+							<div class="modal-header" style="background-color: #73bf73;">
+								<h5 class="modal-title text-light ml-4">Project/Research Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1348,8 +1365,8 @@ while($row=$res->fetch_assoc())
 				<div class="modal fade clubs_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 						<div class="modal-content">
-							<div class="modal-header bg-info">
-								<h5 class="modal-title">Organisations/Clubs Report</h5>
+							<div class="modal-header" style="background-color: #73bf73;">
+								<h5 class="modal-title text-light ml-4">Organisations/Clubs Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1479,8 +1496,8 @@ while($row=$res->fetch_assoc())
 				<div class="modal fade cc_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 						<div class="modal-content">
-							<div class="modal-header bg-info">
-								<h5 class="modal-title">Credit Course Report</h5>
+							<div class="modal-header" style="background-color: #73bf73;">
+								<h5 class="modal-title text-light ml-4">Credit Course Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1600,8 +1617,8 @@ while($row=$res->fetch_assoc())
 				<div class="modal fade interns_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 					<div class="modal-dialog modal-lg" style="max-width: 1200px;">
 						<div class="modal-content">
-							<div class="modal-header bg-info">
-								<h5 class="modal-title">Internship Report</h5>
+							<div class="modal-header" style="background-color: #73bf73;">
+								<h5 class="modal-title text-light ml-4">Internship Report</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -1662,17 +1679,18 @@ while($row=$res->fetch_assoc())
 		</div>
 	</div>
 </div> <!-- 6th row-->
+
 <?php
-}
+} //if(course==1)
+
 else
 {
 	include 'modal_unsuccess_reports.html';
 }
+
 } #if (isset($_POST["submit"]))
 ?>
-</div> 
 
-
-
+</div>
 </body>
 </html>

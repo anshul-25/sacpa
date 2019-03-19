@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2019 at 07:40 AM
+-- Generation Time: Mar 19, 2019 at 04:46 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -39314,7 +39314,94 @@ INSERT INTO `city` (`idCity`, `name`, `state_id`) VALUES
 (39663, 'Yuanlin', 3471),
 (39664, 'Fenglin', 3477),
 (39665, 'Hualian', 3477),
-(39666, 'Yuli', 3477);
+(39666, 'Yuli', 3477),
+(39667, 'Abu Zabi', 3796),
+(39668, 'Ajman', 3797),
+(39669, 'Dubai', 3798),
+(39670, 'Ras al-Khaymah', 3799),
+(39671, 'Sharjah', 3800),
+(39672, 'Sharjha', 3801),
+(39673, 'Umm al Qaywayn', 3802),
+(39674, 'al-Fujayrah', 3803),
+(39675, 'ash-Shariqah', 3804),
+(39676, 'Amnat Charoen', 3526),
+(39677, 'Ang Thong', 3527),
+(39678, 'Bangkok', 3528),
+(39679, 'Buri Ram', 3529),
+(39680, 'Chachoengsao', 3530),
+(39681, 'Chai Nat', 3531),
+(39682, 'Chaiyaphum', 3532),
+(39683, 'Changwat Chaiyaphum', 3533),
+(39684, 'Chanthaburi', 3534),
+(39685, 'Chiang Mai', 3535),
+(39686, 'Chiang Rai', 3536),
+(39687, 'Chon Buri', 3537),
+(39688, 'Chumphon', 3538),
+(39689, 'Kalasin', 3539),
+(39690, 'Kamphaeng Phet', 3540),
+(39691, 'Kanchanaburi', 3541),
+(39692, 'Khon Kaen', 3542),
+(39693, 'Krabi', 3543),
+(39694, 'Krung Thep', 3544),
+(39695, 'Lampang', 3545),
+(39696, 'Lamphun', 3546),
+(39697, 'Loei', 3547),
+(39698, 'Lop Buri', 3548),
+(39699, 'Mae Hong Son', 3549),
+(39700, 'Maha Sarakham', 3550),
+(39701, 'Mukdahan', 3551),
+(39702, 'Nakhon Nayok', 3552),
+(39703, 'Nakhon Pathom', 3553),
+(39704, 'Nakhon Phanom', 3554),
+(39705, 'Nakhon Ratchasima', 3555),
+(39706, 'Nakhon Sawan', 3556),
+(39707, 'Nakhon Si Thammarat', 3557),
+(39708, 'Nan', 3558),
+(39709, 'Narathiwat', 3559),
+(39710, 'Nong Bua Lam Phu', 3560),
+(39711, 'Nong Khai', 3561),
+(39712, 'Nonthaburi', 3562),
+(39713, 'Pathum Thani', 3563),
+(39714, 'Pattani', 3564),
+(39715, 'Phangnga', 3565),
+(39716, 'Phatthalung', 3566),
+(39717, 'Phayao', 3567),
+(39718, 'Phetchabun', 3568),
+(39719, 'Phetchaburi', 3569),
+(39720, 'Phichit', 3570),
+(39721, 'Phitsanulok', 3571),
+(39722, 'Phra Nakhon Si Ayutthaya', 3572),
+(39723, 'Phrae', 3573),
+(39724, 'Phuket', 3574),
+(39725, 'Prachin Buri', 3575),
+(39726, 'Prachuap Khiri Khan', 3576),
+(39727, 'Ranong', 3577),
+(39728, 'Ratchaburi', 3578),
+(39729, 'Rayong', 3579),
+(39730, 'Roi Et', 3580),
+(39731, 'Sa Kaeo', 3581),
+(39732, 'Sakon Nakhon', 3582),
+(39733, 'Samut Prakan', 3583),
+(39734, 'Samut Sakhon', 3584),
+(39735, 'Samut Songkhran', 3585),
+(39736, 'Saraburi', 3586),
+(39737, 'Satun', 3587),
+(39738, 'Si Sa Ket', 3588),
+(39739, 'Sing Buri', 3589),
+(39740, 'Songkhla', 3590),
+(39741, 'Sukhothai', 3591),
+(39742, 'Suphan Buri', 3592),
+(39743, 'Surat Thani', 3593),
+(39744, 'Surin', 3594),
+(39745, 'Tak', 3595),
+(39746, 'Trang', 3596),
+(39747, 'Trat', 3597),
+(39748, 'Ubon Ratchathani', 3598),
+(39749, 'Udon Thani', 3599),
+(39750, 'Uthai Thani', 3600),
+(39751, 'Uttaradit', 3601),
+(39752, 'Yala', 3602),
+(39753, 'Yasothon', 3603);
 
 -- --------------------------------------------------------
 
@@ -39340,7 +39427,8 @@ CREATE TABLE `class10` (
 INSERT INTO `class10` (`idClass10`, `studentid`, `exam_regno`, `Stream`, `Board`, `Total_Marks`, `Marks_obt`, `Year`) VALUES
 (1, 1641011, 456123, 'Science', 'ICSE', 100, 93.8, 2014),
 (2, 1641020, 52645, 'Science', 'ICSE', 100, 96.17, 2014),
-(3, 1641060, 7204599, 'General', 'CBSE', 100, 93.1, 2014);
+(3, 1641060, 7204599, 'General', 'CBSE', 100, 93.1, 2014),
+(4, 1641010, 753159, 'General', 'CBSE', 100, 70.3, 2013);
 
 -- --------------------------------------------------------
 
@@ -39366,7 +39454,8 @@ CREATE TABLE `class12` (
 INSERT INTO `class12` (`idClass12`, `Studentid`, `Exam_reg_no`, `Board`, `Stream`, `Total_marks`, `Marks_Obt`, `Year`) VALUES
 (1, 1641011, 789456, 'CBSE', 'Science', 100, 92, 2016),
 (2, 1641020, 456147, 'CBSE', 'Science', 100, 96.2, 2016),
-(3, 1641060, 724600, 'CBSE', 'Science', 100, 75.5, 2016);
+(3, 1641060, 724600, 'CBSE', 'Science', 100, 75.5, 2016),
+(4, 1641010, 756984, 'CBSE', 'Commerce', 100, 87.4, 2016);
 
 -- --------------------------------------------------------
 
@@ -44686,7 +44775,59 @@ INSERT INTO `sub_marks` (`idSub_marks`, `Student_id`, `Subject_id`, `Hours_Atten
 (51, 1641020, 'BCA531', 60, 9, 24, 9, 40, 5),
 (52, 1641020, 'BCA561A', 45, 9, 22, 9, 43, 5),
 (53, 1641020, 'BCA541B', 60, 9, 20, 9, 44, 5),
-(54, 1641020, 'BCA542E', 60, 9, 22, 9, 44, 5);
+(54, 1641020, 'BCA542E', 60, 9, 22, 9, 44, 5),
+(55, 1641010, 'BCA121', 42, 7, 18, 7, 31, 4),
+(56, 1641010, 'BCA131', 55, 7, 18, 7, 35, 4),
+(57, 1641010, 'BCA132', 35, 8, 20, 8, 46, 3),
+(58, 1641010, 'BCA133', 55, 9, 23, 10, 37, 4),
+(59, 1641010, 'BCA134', 50, 9, 24, 9, 39, 3),
+(60, 1641010, 'BCA221', 43, 7, 21, 7, 34, 4),
+(61, 1641010, 'BCA231', 40, 7, 21, 7, 35, 2),
+(62, 1641010, 'BCA232', 30, 7, 21, 7, 20, 2),
+(63, 1641010, 'BCA233', 40, 9, 23, 9, 25, 1),
+(64, 1641010, 'BCA234', 40, 8, 21, 8, 44, 1),
+(65, 1641010, 'BCA321', 42, 7, 20, 7, 25, 4),
+(66, 1641010, 'BCA331', 52, 6, 19, 6, 30, 3),
+(67, 1641010, 'BCA332', 38, 9, 23, 9, 34, 3),
+(68, 1641010, 'BCA333', 45, 5, 9, 5, 24, 2),
+(69, 1641010, 'BCA334', 55, 6, 15, 6, 33, 3),
+(70, 1641010, 'BCA335', 55, 9, 22, 9, 36, 3),
+(71, 1641010, 'BCA421', 30, 7, 20, 7, 27, 0),
+(72, 1641010, 'BCA431', 55, 8, 20, 8, 28, 3),
+(73, 1641010, 'BCA432', 30, 9, 22, 8, 31, 1),
+(74, 1641010, 'BCA433', 40, 8, 20, 8, 20, 0),
+(75, 1641010, 'BCA434', 50, 8, 21, 8, 37, 2),
+(76, 1641010, 'BCA562', 37, 6, 12, 6, 20, 2),
+(77, 1641010, 'BCA531', 47, 7, 13, 7, 20, 1),
+(78, 1641010, 'BCA561B', 35, 6, 18, 6, 30, 2),
+(79, 1641010, 'BCA541B', 45, 6, 12, 6, 33, 0),
+(80, 1641010, 'BCA542A', 45, 7, 16, 8, 25, 0),
+(81, 1641060, 'BCA121', 45, 7, 19, 7, 38, 5),
+(82, 1641060, 'BCA131', 60, 9, 21, 9, 45, 5),
+(83, 1641060, 'BCA132', 44, 9, 24, 10, 48, 5),
+(84, 1641060, 'BCA133', 60, 9, 22, 9, 47, 5),
+(85, 1641060, 'BCA134', 60, 9, 21, 9, 36, 5),
+(86, 1641060, 'BCA221', 45, 7, 20, 7, 37, 5),
+(87, 1641060, 'BCA231', 60, 9, 21, 9, 44, 5),
+(88, 1641060, 'BCA232', 44, 10, 25, 10, 41, 5),
+(89, 1641060, 'BCA233', 59, 9, 23, 9, 44, 5),
+(90, 1641060, 'BCA234', 59, 9, 21, 9, 40, 5),
+(91, 1641060, 'BCA321', 43, 6, 20, 6, 34, 5),
+(92, 1641060, 'BCA331', 55, 9, 25, 9, 41, 4),
+(93, 1641060, 'BCA332', 40, 9, 23, 9, 41, 3),
+(94, 1641060, 'BCA333', 60, 8, 20, 8, 37, 5),
+(95, 1641060, 'BCA334', 56, 7, 21, 7, 42, 4),
+(96, 1641060, 'BCA335', 56, 9, 23, 9, 45, 4),
+(97, 1641060, 'BCA421', 44, 6, 21, 6, 35, 5),
+(98, 1641060, 'BCA431', 59, 9, 24, 9, 45, 5),
+(99, 1641060, 'BCA432', 43, 8, 22, 8, 33, 5),
+(100, 1641060, 'BCA433', 60, 9, 24, 9, 39, 5),
+(101, 1641060, 'BCA434', 59, 9, 23, 9, 38, 5),
+(102, 1641060, 'BCA562', 43, 8, 21, 8, 32, 5),
+(103, 1641060, 'BCA531', 60, 9, 24, 9, 37, 5),
+(104, 1641060, 'BCA561A', 45, 6, 17, 6, 41, 5),
+(105, 1641060, 'BCA541E', 60, 9, 21, 9, 37, 5),
+(106, 1641060, 'BCA542A', 60, 8, 21, 8, 33, 5);
 
 --
 -- Indexes for dumped tables
@@ -44860,13 +45001,13 @@ ALTER TABLE `activity_type`
 -- AUTO_INCREMENT for table `class10`
 --
 ALTER TABLE `class10`
-  MODIFY `idClass10` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idClass10` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `class12`
 --
 ALTER TABLE `class12`
-  MODIFY `idClass12` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idClass12` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `clubs_organisations`
@@ -44932,7 +45073,7 @@ ALTER TABLE `programme`
 -- AUTO_INCREMENT for table `sub_marks`
 --
 ALTER TABLE `sub_marks`
-  MODIFY `idSub_marks` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `idSub_marks` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- Constraints for dumped tables

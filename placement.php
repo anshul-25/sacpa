@@ -126,12 +126,12 @@ require("db.php");
 						$selects="SELECT COUNT(student.RegisterNo) from student, placements p,company c where student.RegisterNo = p.Studentid and p.rounds_qualified=c.No_of_rounds_conducted and p.companyid = c.idCompany and student.ProgrammeID =".$course." and student.Year_of_Admission =".$batch;
 						$sel_res=$conn->query($selects);
 						$sel_row=$sel_res->fetch_assoc();
-// ------------------------FOR STATISTICS-------------------------
+					// ------------------------FOR STATISTICS-------------------------
 
 				?>
 						<div class="row w-100 m-0" style="padding-top: 75px;">
 							<div class="col-7 p-4">
-								<div class="card-deck">
+								<div class="card-deck" style="text-align: center;">
 									<!-- -------------------------------------------CARD 1---------------------------------------------------->
 									<!-- pie chart for card 1 -->
 									<?php
@@ -178,8 +178,8 @@ require("db.php");
 											<div class="modal fade placed_students_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 												<div class="modal-dialog modal-lg" style="max-width:1000px;">
 													<div class="modal-content">
-														<div class="modal-header bg-info">
-															<h5 class="modal-title">List of Placed Students</h5>
+														<div class="modal-header" style="background-color: #73bf73;">
+															<h5 class="modal-title text-light ml-4">List of Placed Students</h5>
 															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
@@ -296,14 +296,17 @@ require("db.php");
 						<div class="modal fade notplaced_students_table" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 							<div class="modal-dialog modal-lg" style="max-width:1000px;">
 								<div class="modal-content">
-									<div class="modal-header bg-info">
-										<h5 class="modal-title">List of Not Placed Students</h5>
+									<div class="modal-header" style="background-color: #73bf73;">
+										<h5 class="modal-title text-light ml-4">List of Not Placed Students</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									<div class="modal-body modal-body-e">
-										<input class="form-control ml-3 mt-3" id="searchField2" type="text" placeholder="Search.." style="width:50%;"/>
+										<div class="alert alert-secondary ml-3" role="alert" style="width: 60%;">
+											RUBRICS -->=50 Interview || >=30 Group Discussion || >=0 Aptitude
+										</div>
+										<input class="form-control ml-3 mt-3" id="searchField2" type="text" placeholder="Search.." style="width:60%;"/>
 
 										<br>
 
@@ -399,7 +402,7 @@ require("db.php");
 				}
 			}
 			?>
-			<div class="card-deck mt-3">
+			<div class="card-deck mt-3" style="text-align: center;">
 				<!-- -------------------------------------------CARD 3-------------------------------------------------- -->
 				<script type="text/javascript">
 					google.charts.load('current', {'packages':['bar']});
@@ -443,8 +446,8 @@ require("db.php");
 						<div class="modal fade graph1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 							<div class="modal-dialog modal-lg" style="max-width: 1100px;">
 								<div class="modal-content">
-									<div class="modal-header bg-info">
-										<h5 class="modal-title">Company vs Selected</h5>
+									<div class="modal-header" style="background-color: #73bf73;">
+										<h5 class="modal-title text-light ml-4">Company vs Selected</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
@@ -520,7 +523,6 @@ require("db.php");
 						options1 = {
 							chart1: {
 								title: 'Placement Information',
-								subtitle: 'RUBRICS -- >=50 Interview || >=30 Group Discussion || >=0 Aptitude'
 							}
 							
 						};
@@ -543,8 +545,8 @@ require("db.php");
 						<div class="modal fade graph2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 75px;">
 							<div class="modal-dialog modal-lg" style="max-width: 1100px;">
 								<div class="modal-content">
-									<div class="modal-header bg-info">
-										<h5 class="modal-title">Company vs Qualified Percentage</h5>
+									<div class="modal-header" style="background-color: #73bf73;">
+										<h5 class="modal-title text-light ml-4">Company vs Qualified Percentage</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
